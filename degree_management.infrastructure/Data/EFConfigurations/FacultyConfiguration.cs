@@ -13,6 +13,6 @@ public class FacultyConfiguration : IEntityTypeConfiguration<Faculty>
         builder.Property(c => c.Code).HasMaxLength(50).IsRequired();
         builder.Property(c => c.Active).IsRequired();
         builder.Property(c => c.Description).HasMaxLength(250);
-        builder.HasMany(c => c.Majors).WithOne().HasForeignKey(c => c.FacultyId);
+        
     }
 }

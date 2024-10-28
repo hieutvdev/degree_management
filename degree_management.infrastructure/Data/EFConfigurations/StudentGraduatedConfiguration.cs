@@ -9,7 +9,6 @@ public class StudentGraduatedConfiguration : IEntityTypeConfiguration<StudentGra
     public void Configure(EntityTypeBuilder<StudentGraduated> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.HasOne(c => c.Major).WithMany().HasForeignKey(c => c.MajorId);
         builder.Property(c => c.FullName).HasMaxLength(100).IsRequired();
         builder.Property(c => c.DateOfBirth)
             .IsRequired();

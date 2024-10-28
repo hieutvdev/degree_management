@@ -21,14 +21,6 @@ public class InvetoryConfiguration : IEntityTypeConfiguration<Inventory>
         builder.Property(i => i.Description)
             .HasMaxLength(255);
         
-        builder.HasOne(i => i.Degree)
-            .WithMany()
-            .HasForeignKey(i => i.DegreeId)
-            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(i => i.Warehouse)
-            .WithMany()
-            .HasForeignKey(i => i.WarehouseId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

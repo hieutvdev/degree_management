@@ -15,6 +15,5 @@ public class DegreeTypeConfiguration : IEntityTypeConfiguration<DegreeType>
         builder.Property(c => c.Duration).IsRequired();
         builder.Property(c => c.Level).IsRequired();
         builder.Property(c => c.Descripion).HasMaxLength(250);
-        builder.HasMany(c => c.Degrees).WithOne().HasForeignKey(c => c.DegreeTypeId);
     }
 }
