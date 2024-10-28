@@ -19,7 +19,7 @@ public class InvetoryConfiguration : IEntityTypeConfiguration<Inventory>
             .IsRequired();
 
         builder.Property(i => i.Description)
-            .HasMaxLength(155);
+            .HasMaxLength(255);
         
         builder.HasOne(i => i.Degree)
             .WithMany()
