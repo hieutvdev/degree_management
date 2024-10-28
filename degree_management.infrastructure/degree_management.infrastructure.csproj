@@ -8,13 +8,24 @@
 
     <ItemGroup>
       <Folder Include="Configurations\" />
-      <Folder Include="Data\EFConfigurations\" />
       <Folder Include="Data\Extensions\" />
-      <Folder Include="Data\Interceptors\" />
       <Folder Include="Data\Migrations\" />
       <Folder Include="Extensions\" />
       <Folder Include="Repositories\" />
       <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\degree_management.application\degree_management.application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 </Project>
