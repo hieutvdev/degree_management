@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace degree_management.application.Data;
 
-public interface IApplicationDbContext
+public interface IApplicationDbContext 
 {
     DbSet<Faculty> Faculties { get; }
     DbSet<Major> Majors { get; }
