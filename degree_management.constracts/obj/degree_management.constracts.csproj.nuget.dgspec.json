@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\workspace\\BE\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {}
+    "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {}
   },
   "projects": {
-    "D:\\workspace\\BE\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
+    "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\workspace\\BE\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
+        "projectUniqueName": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
         "projectName": "degree_management.constracts",
-        "projectPath": "D:\\workspace\\BE\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
-        "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "D:\\workspace\\BE\\mini_project\\degree_management\\degree_management.constracts\\obj\\",
+        "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +34,50 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.FeatureManagement.AspNetCore": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400-preview.0.24324.5/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
