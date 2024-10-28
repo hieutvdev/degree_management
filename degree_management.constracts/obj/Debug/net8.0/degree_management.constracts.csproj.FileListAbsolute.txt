@@ -1,0 +1,13 @@
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\bin\Debug\net8.0\degree_management.constracts.deps.json
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\bin\Debug\net8.0\degree_management.constracts.dll
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\bin\Debug\net8.0\degree_management.constracts.pdb
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.csproj.AssemblyReference.cache
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.AssemblyInfoInputs.cache
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.AssemblyInfo.cs
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.csproj.CoreCompileInputs.cache
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.sourcelink.json
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.dll
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\refint\degree_management.constracts.dll
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\degree_management.constracts.pdb
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.constracts\obj\Debug\net8.0\ref\degree_management.constracts.dll
