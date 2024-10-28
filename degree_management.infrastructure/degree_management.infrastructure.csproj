@@ -8,13 +8,16 @@
 
     <ItemGroup>
       <Folder Include="Configurations\" />
-      <Folder Include="Data\EFConfigurations\" />
       <Folder Include="Data\Extensions\" />
       <Folder Include="Data\Interceptors\" />
       <Folder Include="Data\Migrations\" />
       <Folder Include="Extensions\" />
       <Folder Include="Repositories\" />
       <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\degree_management.application\degree_management.application.csproj" />
     </ItemGroup>
 
 </Project>

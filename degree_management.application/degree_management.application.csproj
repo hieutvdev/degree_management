@@ -8,13 +8,16 @@
 
     <ItemGroup>
       <Folder Include="DependencyInjection\Extensions\" />
-      <Folder Include="Dtos\" />
       <Folder Include="Exceptions\" />
       <Folder Include="Extensions\" />
       <Folder Include="Mappers\" />
       <Folder Include="Repositories\" />
       <Folder Include="Services\" />
       <Folder Include="UseCases\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\degree_management.domain\degree_management.domain.csproj" />
     </ItemGroup>
 
 </Project>
