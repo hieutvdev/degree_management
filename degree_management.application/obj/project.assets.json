@@ -1165,34 +1165,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nguye\\.nuget\\packages\\": {}
+    "C:\\Users\\qn150\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.application\\degree_management.application.csproj",
+      "projectUniqueName": "D:\\BE\\CDS_BE\\degree_management\\degree_management.application\\degree_management.application.csproj",
       "projectName": "degree_management.application",
-      "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.application\\degree_management.application.csproj",
-      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.application\\obj\\",
+      "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.application\\degree_management.application.csproj",
+      "packagesPath": "C:\\Users\\qn150\\.nuget\\packages\\",
+      "outputPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\qn150\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\degree_management.domain.csproj": {
-              "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\degree_management.domain.csproj"
+            "D:\\BE\\CDS_BE\\degree_management\\degree_management.domain\\degree_management.domain.csproj": {
+              "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.domain\\degree_management.domain.csproj"
             }
           }
         }
@@ -1233,7 +1231,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

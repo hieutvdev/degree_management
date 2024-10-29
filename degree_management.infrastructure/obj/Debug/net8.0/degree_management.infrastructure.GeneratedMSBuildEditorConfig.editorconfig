@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = degree_management.infrastructure
-build_property.ProjectDir = D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.infrastructure\
+build_property.ProjectDir = D:\BE\CDS_BE\degree_management\degree_management.infrastructure\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

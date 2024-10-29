@@ -5060,40 +5060,38 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nguye\\.nuget\\packages\\": {}
+    "C:\\Users\\qn150\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.api\\degree_management.api.csproj",
+      "projectUniqueName": "D:\\BE\\CDS_BE\\degree_management\\degree_management.api\\degree_management.api.csproj",
       "projectName": "degree_management.api",
-      "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.api\\degree_management.api.csproj",
-      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.api\\obj\\",
+      "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.api\\degree_management.api.csproj",
+      "packagesPath": "C:\\Users\\qn150\\.nuget\\packages\\",
+      "outputPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\qn150\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.application\\degree_management.application.csproj": {
-              "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.application\\degree_management.application.csproj"
+            "D:\\BE\\CDS_BE\\degree_management\\degree_management.application\\degree_management.application.csproj": {
+              "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.application\\degree_management.application.csproj"
             },
-            "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
-              "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj"
+            "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
+              "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj"
             },
-            "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.infrastructure\\degree_management.infrastructure.csproj": {
-              "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.infrastructure\\degree_management.infrastructure.csproj"
+            "D:\\BE\\CDS_BE\\degree_management\\degree_management.infrastructure\\degree_management.infrastructure.csproj": {
+              "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.infrastructure\\degree_management.infrastructure.csproj"
             }
           }
         }
@@ -5143,7 +5141,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
