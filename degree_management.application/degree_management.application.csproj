@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Dtos\Requests\" />
       <Folder Include="Exceptions\" />
       <Folder Include="Extensions\" />
       <Folder Include="Services\" />

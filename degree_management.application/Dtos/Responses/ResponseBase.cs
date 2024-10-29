@@ -1,3 +1,3 @@
 ﻿namespace degree_management.application.Dtos.Responses;
 
-public record ResponseBase(object? Metadata, string Message = "", bool IsSuccess = true);
+public record ResponseBase(object? Data, string Message = "", bool IsSuccess = true);

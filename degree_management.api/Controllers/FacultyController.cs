@@ -5,6 +5,7 @@ using degree_management.application.UseCases.V1.Commands.Faculty.Delete;
 using degree_management.application.UseCases.V1.Commands.Faculty.Update;
 using degree_management.application.UseCases.V1.Queries.Faculty.GetFaculties;
 using degree_management.application.UseCases.V1.Queries.Faculty.GetFaculty;
+using degree_management.application.UseCases.V1.Queries.Faculty.GetSelectFaculites;
 using degree_management.constracts.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +66,13 @@ public class FacultyController : ControllerBase
     public async Task<IActionResult> GetDetail([FromQuery] int id)
     {
         var result = await _mediator.Send(new GetFacultyQuery(id));
+        return Ok(result);
+    }
+
+    [HttpGet("get-select")]
+    public async Task<IActionResult> GetSelect()
+    {
+        var result = await _mediator.Send(new GetSelectFaculitesQuery());
         return Ok(result);
     }
 }
