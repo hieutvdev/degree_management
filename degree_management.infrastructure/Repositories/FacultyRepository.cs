@@ -1,10 +1,13 @@
-﻿using degree_management.application.Repositories;
+﻿using AutoMapper;
+using degree_management.application.Dtos.Responses;
+using degree_management.application.Dtos.Responses.Faculty;
+using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
 
 namespace degree_management.constracts.RepositoryBase.EntityFramework;
 
-public class FacultyRepository(IRepositoryBase<Faculty> repositoryBase) : IFacultyRepository
+public class FacultyRepository(IRepositoryBase<Faculty> repositoryBase, IMapper mapper) : IFacultyRepository
 {
     public async Task<bool> CreateAsync(Faculty facultyModel)
     {
@@ -33,9 +36,23 @@ public class FacultyRepository(IRepositoryBase<Faculty> repositoryBase) : IFacul
         return result;
     }
 
-    public async Task<PaginatedResult<Faculty>> GetPageAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
+    public async Task<PaginatedResult<FacultyDto>> GetPageAsync(PaginationRequest paginationRequest,
+        CancellationToken cancellationToken = default)
     {
         var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
-        return result;
+        var data = mapper.Map<IEnumerable<Faculty>, IEnumerable<FacultyDto>>(result.Data).ToList();
+        return new PaginatedResult<FacultyDto>(data: data, pageSize: paginationRequest.PageSize,
+            pageIndex: paginationRequest.PageIndex, count: data.Count());
+    }
+
+    public async Task<IEnumerable<SelectDto>> GetSelectAsync()
+    {
+        var result = await repositoryBase.GetSelectAsync(selector: faculty => new { faculty.Name, faculty.Id },
+            conditions: faculty => faculty.Active);
+        return result.Select(f => new SelectDto
+        {
+            Text = f.Name,
+            Value = f.Id
+        });
     }
 }

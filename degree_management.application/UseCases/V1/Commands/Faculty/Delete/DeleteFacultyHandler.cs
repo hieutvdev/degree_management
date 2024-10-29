@@ -11,7 +11,7 @@ public class DeleteFacultyHandler (IFacultyRepository facultyRepo, IMapper mappe
     {
         var faculty = mapper.Map<domain.Entities.Faculty>(request.Request);
         var isSuccess = await facultyRepo.DeleteAsync(faculty.Id);
-        return new ResponseBase(Metadata: faculty.Id, IsSuccess: isSuccess,
+        return new ResponseBase(Data: faculty.Id, IsSuccess: isSuccess,
             Message: isSuccess ? "Faculty deleted successfully" : "Faculty could not be deleted");
     }
 }

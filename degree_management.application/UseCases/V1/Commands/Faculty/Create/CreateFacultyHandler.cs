@@ -12,7 +12,7 @@ public class CreateFacultyHandler(IFacultyRepository facultyRepo, IMapper mapper
     {
         var faculty = mapper.Map<domain.Entities.Faculty>(request.Request);
         var isSuccess = await facultyRepo.CreateAsync(faculty);
-        return new ResponseBase(Metadata: faculty.Id, IsSuccess: isSuccess,
+        return new ResponseBase(Data: faculty.Id, IsSuccess: isSuccess,
             Message: isSuccess ? "Faculty created successfully" : "Faculty could not be created");
     }
 }
