@@ -241,10 +241,7 @@
           "Microsoft.FeatureManagement.AspNetCore": "3.2.0"
         },
         "runtime": {
-          "degree_management.constracts.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "degree_management.constracts.dll": {}
         }
       }
     }

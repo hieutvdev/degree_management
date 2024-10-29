@@ -1,4 +1,6 @@
 ﻿using degree_management.application.Data;
+using degree_management.application.Repositories;
+using degree_management.constracts.RepositoryBase.EntityFramework;
 using degree_management.infrastructure.Data;
 using degree_management.infrastructure.Data.Interceptors;
 using Microsoft.AspNetCore.Builder;
@@ -48,13 +50,14 @@ public static class ServiceCollectionConfiguration
 
     public static IServiceCollection RegisterRepository(this IServiceCollection services)
     {
+        services.AddScoped<IFacultyRepository, FacultyRepository>();
         return services;
     }
 
     public static IServiceCollection RegisterService(this IServiceCollection services)
     {
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
-
+        services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
         return services;
     }
