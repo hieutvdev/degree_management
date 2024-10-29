@@ -1,0 +1,1 @@
+﻿global using degree_management.domain.Entities;
