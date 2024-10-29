@@ -14,8 +14,10 @@ public class ServiceProfile : Profile
         CreateMap<CreateFacultyRequest, Faculty>().ReverseMap();
         CreateMap<UpdateFacultyRequest, Faculty>().ReverseMap();
         CreateMap<DeleteFacultyRequest, Faculty>().ReverseMap();
-        CreateMap<CreateMajorRequest, Major>().ReverseMap();
         CreateMap<Faculty, FacultyDto>().ReverseMap();
+        CreateMap<CreateMajorRequest, Major>().ReverseMap();
+        CreateMap<UpdateMajorRequest, Major>().ReverseMap();
+        CreateMap<DeleteMajorRequest, Major>().ReverseMap();
         CreateMap<Major, MajorDto>().ReverseMap();
     }
 }
