@@ -1036,7 +1036,10 @@
           "degree_management.domain": "1.0.0"
         },
         "runtime": {
-          "degree_management.application.dll": {}
+          "degree_management.application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "degree_management.constracts/1.0.0": {
@@ -1052,7 +1055,10 @@
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
-          "degree_management.constracts.dll": {}
+          "degree_management.constracts.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "degree_management.domain/1.0.0": {
@@ -1060,7 +1066,10 @@
           "degree_management.constracts": "1.0.0"
         },
         "runtime": {
-          "degree_management.domain.dll": {}
+          "degree_management.domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

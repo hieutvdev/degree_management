@@ -13,7 +13,7 @@ namespace degree_management.infrastructure.DepedencyInjection.Extensions;
 
 public static class ServiceCollectionConfiguration
 {
-    const string CorsName = "inventory_cors";
+    const string CorsName = "degree_cors";
 
     public static IServiceCollection AddInfrastructureService(this IServiceCollection services,
         IConfiguration configuration)
