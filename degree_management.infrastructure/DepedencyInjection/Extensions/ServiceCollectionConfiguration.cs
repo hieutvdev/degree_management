@@ -51,6 +51,7 @@ public static class ServiceCollectionConfiguration
     public static IServiceCollection RegisterRepository(this IServiceCollection services)
     {
         services.AddScoped<IFacultyRepository, FacultyRepository>();
+        services.AddScoped<IMajorRepository, MajorRepository>();
         return services;
     }
 
