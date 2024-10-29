@@ -317,3 +317,4 @@ D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.api\bi
 D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.api\bin\Debug\net8.0\degree_management.infrastructure.pdb
 D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.api\bin\Debug\net8.0\degree_management.domain.pdb
 D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.api\bin\Debug\net8.0\AutoMapper.dll
+D:\Workspace\dnu\Backend\mini_project\degree_management\degree_management.api\bin\Debug\net8.0\Newtonsoft.Json.dll

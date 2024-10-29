@@ -1,8 +1,10 @@
-﻿using FluentValidation;
+﻿using degree_management.constracts.DTOs;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace degree_management.constracts.Exceptions.Handler;
 
@@ -67,10 +69,14 @@ public class CustomExceptionHandler
 
         if (exception is ValidationException validationException)
         {
-            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
+            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
         }
 
-        await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);
+
+        
+
+        var validationResponse = new ValidationResponse(null, "Validation Failed", false, problemDetails.Extensions);
+        await context.Response.WriteAsJsonAsync(validationResponse, cancellationToken);
         return true;
     }
 
