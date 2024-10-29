@@ -52,6 +52,7 @@ public static class ServiceCollectionConfiguration
     {
         services.AddScoped<IFacultyRepository, FacultyRepository>();
         services.AddScoped<IMajorRepository, MajorRepository>();
+        services.AddScoped<IDegreeTypeRepository, DegreeTypeRepository>();
         return services;
     }
 

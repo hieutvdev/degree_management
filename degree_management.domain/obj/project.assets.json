@@ -404,6 +404,19 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Pipelines.Sockets.Unofficial/2.2.8": {
         "type": "package",
         "dependencies": {
@@ -460,7 +473,8 @@
           "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore": "8.0.6",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "8.0.1",
-          "Microsoft.FeatureManagement.AspNetCore": "3.2.0"
+          "Microsoft.FeatureManagement.AspNetCore": "3.2.0",
+          "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
           "bin/placeholder/degree_management.constracts.dll": {}
@@ -1033,6 +1047,36 @@
         "microsoft.featuremanagement.aspnetcore.nuspec"
       ]
     },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Pipelines.Sockets.Unofficial/2.2.8": {
       "sha512": "zG2FApP5zxSx6OcdJQLbZDk2AVlN2BNQD6MorwIfV6gVj0RRxWPEp2LXAxqDGZqeNV1Zp0BNPcNaey/GXmTdvQ==",
       "type": "package",
@@ -1115,32 +1159,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\qn150\\.nuget\\packages\\": {}
+    "C:\\Users\\nguye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BE\\CDS_BE\\degree_management\\degree_management.domain\\degree_management.domain.csproj",
+      "projectUniqueName": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\degree_management.domain.csproj",
       "projectName": "degree_management.domain",
-      "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.domain\\degree_management.domain.csproj",
-      "packagesPath": "C:\\Users\\qn150\\.nuget\\packages\\",
-      "outputPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.domain\\obj\\",
+      "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\degree_management.domain.csproj",
+      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\qn150\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
-              "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj"
+            "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
+              "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj"
             }
           }
         }
@@ -1175,8 +1221,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.domain\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

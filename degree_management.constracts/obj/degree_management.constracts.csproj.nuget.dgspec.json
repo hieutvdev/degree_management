@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {}
+    "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {}
   },
   "projects": {
-    "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
+    "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
+        "projectUniqueName": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
         "projectName": "degree_management.constracts",
-        "projectPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
-        "packagesPath": "C:\\Users\\qn150\\.nuget\\packages\\",
-        "outputPath": "D:\\BE\\CDS_BE\\degree_management\\degree_management.constracts\\obj\\",
+        "projectPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\degree_management.constracts.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "D:\\Workspace\\dnu\\Backend\\mini_project\\degree_management\\degree_management.constracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\qn150\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,6 +76,10 @@
             "Microsoft.FeatureManagement.AspNetCore": {
               "target": "Package",
               "version": "[3.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -92,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
