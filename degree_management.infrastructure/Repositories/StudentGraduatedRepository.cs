@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using degree_management.application.Dtos.Responses;
 using degree_management.application.Dtos.Responses.StudentGraduated;
 using degree_management.application.Repositories;
@@ -40,10 +41,26 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
     public async Task<PaginatedResult<StudentGraduatedDto>> GetListStudentGraduatedsAsync(
         PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
     {
-        var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
-        var data = mapper.Map<IEnumerable<StudentGraduated>, IEnumerable<StudentGraduatedDto>>(result.Data).ToList();
-        return new PaginatedResult<StudentGraduatedDto>(data: data, pageSize: paginationRequest.PageSize,
-            pageIndex: paginationRequest.PageIndex, count: data.Count());
+        var includes = new List<Expression<Func<StudentGraduated, object>>>
+        {
+            m => m.Major!
+        };
+        var result = await repositoryBase.GetPageWithIncludesAsync(paginationRequest,selector: s => new StudentGraduatedDto
+        {
+            Id = s.Id,
+            FullName = s.FullName,
+            DateOfBirth = s.DateOfBirth,
+            Gender = s.Gender,
+            GraduationYear = s.GraduationYear,
+            MajorId = s.MajorId,
+            MajorName = s.Major!.Name,
+            GPA = s.GPA,
+            Honors = s.Honors,
+            ContactEmail = s.ContactEmail,
+            PhoneNumber = s.PhoneNumber,
+        }, cancellationToken: cancellationToken);
+       
+        return result;
     }
 
     public async Task<IEnumerable<SelectDto>> GetSelectStudentGraduatedsAsync()

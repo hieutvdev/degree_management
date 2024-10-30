@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using degree_management.application.Dtos.Responses;
 using degree_management.application.Dtos.Responses.Major;
 using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
 
-namespace degree_management.constracts.RepositoryBase.EntityFramework;
+namespace degree_management.infrastructure.Repositories;
 
 public class MajorRepository(IRepositoryBase<Major> repositoryBase, IMapper mapper) : IMajorRepository
 {
@@ -30,18 +31,43 @@ public class MajorRepository(IRepositoryBase<Major> repositoryBase, IMapper mapp
         return isSuccess;
     }
 
-    public async Task<Major> GetMajorByIdAsync(int majorId)
+    public async Task<MajorDto> GetMajorByIdAsync(int majorId)
     {
-        var result = await repositoryBase.GetByFieldAsync("Id", majorId);
-        return result;
+        var includes = new List<Expression<Func<Major, object>>>
+        {
+            m => m.Faculty!
+        };
+        
+        var result = await repositoryBase.GetByFieldWithIncludesAsync("Id", majorId, includes: includes);
+        var majorDto = mapper.Map<MajorDto>(result);
+        return majorDto;
     }
 
     public async Task<PaginatedResult<MajorDto>> GetPageAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
     {
-        var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
-        var data = mapper.Map<IEnumerable<Major>, IEnumerable<MajorDto>>(result.Data).ToList();
-        return new PaginatedResult<MajorDto>(data: data, pageSize: paginationRequest.PageSize,
-            pageIndex: paginationRequest.PageIndex, count: data.Count());
+  
+        var includes = new List<Expression<Func<Major, object>>>
+        {
+            m => m.Faculty!
+        };
+
+        var result = await repositoryBase.GetPageWithIncludesAsync(
+            paginationRequest,
+            selector: m => new MajorDto
+            {
+                Id = m.Id,
+                Code = m.Code,
+                Name = m.Name,
+                Active = m.Active,
+                Description = m.Description,
+                FacultyId = m.FacultyId,
+                FacultyName = m.Faculty!.Name 
+            },
+            includes: includes,
+            cancellationToken: cancellationToken
+        );
+
+        return result;
     }
 
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
