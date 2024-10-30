@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using degree_management.application.Dtos.Faculty;
+using degree_management.application.Dtos.Requests.Degree;
 using degree_management.application.Dtos.Requests.DegreeType;
 using degree_management.application.Dtos.Requests.Major;
 using degree_management.application.Dtos.Requests.StudentGraduated;
+using degree_management.application.Dtos.Responses.Degree;
 using degree_management.application.Dtos.Responses.DegreeType;
 using degree_management.application.Dtos.Responses.Faculty;
 using degree_management.application.Dtos.Responses.Major;
@@ -31,5 +33,9 @@ public class ServiceProfile : Profile
         CreateMap<UpdateStudentGraduatedRequest, StudentGraduated>().ReverseMap();
         CreateMap<DeleteStudentGraduatedRequest, StudentGraduated>().ReverseMap();
         CreateMap<StudentGraduated, StudentGraduatedDto>().ReverseMap();
+        CreateMap<CreateDegreeRequest, Degree>().ReverseMap();
+        CreateMap<UpdateDegreeRequest, Degree>().ReverseMap();
+        CreateMap<DeleteDegreeRequest, Degree>().ReverseMap();
+        CreateMap<Degree, DegreeDto>().ReverseMap();
     }
 }

@@ -13,6 +13,6 @@ public class CreateDegreeTypeHandler(IDegreeTypeRepository degreeTypeRepo, IMapp
         var degreeType = mapper.Map<domain.Entities.DegreeType>(request.Request);
         var isSuccess = await degreeTypeRepo.CreateDegreeTypeAsync(degreeType);
         return new ResponseBase(Data: degreeType.Id, IsSuccess: isSuccess,
-            Message: isSuccess ? "Major created successfully!" : "Error creating major!");
+            Message: isSuccess ? "DegreeType created successfully!" : "Error creating major!");
     }
 }
