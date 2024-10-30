@@ -47,12 +47,8 @@ public class FacultyRepository(IRepositoryBase<Faculty> repositoryBase, IMapper 
 
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: faculty => new { faculty.Name, faculty.Id },
+        var result = await repositoryBase.GetSelectAsync(selector: faculty => new SelectDto {Text = faculty.Name,Value = faculty.Id },
             conditions: faculty => faculty.Active);
-        return result.Select(f => new SelectDto
-        {
-            Text = f.Name,
-            Value = f.Id
-        });
+        return result;
     }
 }
