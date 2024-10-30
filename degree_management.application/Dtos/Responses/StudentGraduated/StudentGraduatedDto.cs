@@ -10,6 +10,7 @@ public class StudentGraduatedDto : Entity<int>
     public bool Gender { get; set; }
     public DateTime GraduationYear { get; set; }
     public int MajorId { get; set; }
+    public string MajorName { get; set; }
     public float GPA { get; set; }
     public int Honors { get; set; }
     public string ContactEmail { get; set; } = String.Empty;

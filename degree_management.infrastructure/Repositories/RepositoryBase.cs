@@ -108,4 +108,66 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         var pagedResult = new PaginatedResult<TEntity>(pageIndex, pageSize, totalCount, entities);
         return pagedResult;
     }
+    
+    public async Task<PaginatedResult<TResult>> GetPageWithIncludesAsync<TResult>(
+        PaginationRequest paginationRequest,
+        Expression<Func<TEntity, TResult>> selector,
+        Expression<Func<TEntity, bool>>? conditions = null,
+        List<Expression<Func<TEntity, object>>>? includes = null,
+        CancellationToken cancellationToken = default)
+    {
+        IQueryable<TEntity> query = _dbSet!.AsNoTracking();
+
+        if (conditions != null)
+            query = query.Where(conditions);
+
+        if (includes != null)
+        {
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+        }
+
+        var totalCount = await query.CountAsync(cancellationToken);
+
+        var data = await query
+            .Skip(paginationRequest.PageSize * paginationRequest.PageIndex)
+            .Take(paginationRequest.PageSize)
+            .Select(selector)
+            .ToListAsync(cancellationToken);
+
+        return new PaginatedResult<TResult>(
+            data: data,
+            pageSize: paginationRequest.PageSize,
+            pageIndex: paginationRequest.PageIndex,
+            count: totalCount
+        );
+    }
+    
+    public async Task<TEntity> GetByFieldWithIncludesAsync(
+        string fieldName, 
+        object value,
+        List<Expression<Func<TEntity, object>>>? includes = null,
+        CancellationToken cancellationToken = default)
+    {
+        IQueryable<TEntity> query = _dbSet!.AsNoTracking();
+
+        if (includes != null)
+        {
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+        }
+
+        var entity = await query.FirstOrDefaultAsync(
+            e => EF.Property<object>(e, fieldName).Equals(value), 
+            cancellationToken
+        );
+
+        return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} with {fieldName} '{value}' not found");
+    }
+
+
 }
