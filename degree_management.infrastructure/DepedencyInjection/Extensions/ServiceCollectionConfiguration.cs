@@ -3,6 +3,7 @@ using degree_management.application.Repositories;
 using degree_management.constracts.RepositoryBase.EntityFramework;
 using degree_management.infrastructure.Data;
 using degree_management.infrastructure.Data.Interceptors;
+using degree_management.infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -54,6 +55,7 @@ public static class ServiceCollectionConfiguration
         services.AddScoped<IMajorRepository, MajorRepository>();
         services.AddScoped<IDegreeTypeRepository, DegreeTypeRepository>();
         services.AddScoped<IStudentGraduatedRepository, StudentGraduatedRepository>();
+        services.AddScoped<IDegreeRepository, DegreeRepository>();
         return services;
     }
 
