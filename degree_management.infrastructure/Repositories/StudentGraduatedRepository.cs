@@ -25,16 +25,16 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
         return isSuccess;
     }
 
-    public async Task<bool> DeleteStudentGraduatedAsync(int degreeTypeId)
+    public async Task<bool> DeleteStudentGraduatedAsync(int studentGraduatedId)
     {
-        await repositoryBase.DeleteAsync(s => s.Id == degreeTypeId);
+        await repositoryBase.DeleteAsync(s => s.Id == studentGraduatedId);
         bool isSuccess = await repositoryBase.SaveChangesAsync() > 0;
         return isSuccess;
     }
 
-    public async Task<StudentGraduated> GetStudentGraduatedByIdAsync(int degreeTypeId)
+    public async Task<StudentGraduated> GetStudentGraduatedByIdAsync(int studentGraduatedId)
     {
-        var result = await repositoryBase.GetByFieldAsync("Id", degreeTypeId);
+        var result = await repositoryBase.GetByFieldAsync("Id", studentGraduatedId);
         return result;
     }
 

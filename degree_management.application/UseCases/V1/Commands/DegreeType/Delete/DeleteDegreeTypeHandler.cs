@@ -10,7 +10,7 @@ public class DeleteDegreeTypeHandler(IDegreeTypeRepository degreeTypeRepo, IMapp
 {
     public async Task<ResponseBase> Handle(DeleteDegreeTypeComand request, CancellationToken cancellationToken)
     {
-        var degreeType = mapper.Map<domain.Entities.DegreeType>(request);
+        var degreeType = mapper.Map<domain.Entities.DegreeType>(request.Request);
         bool isSuccess = await degreeTypeRepo.DeleteDegreeTypeAsync(degreeType.Id);
         return new ResponseBase(Data: degreeType.Id, IsSuccess: isSuccess,
             Message: isSuccess ? "Degree type deleted." : "Degree type could not be deleted.");

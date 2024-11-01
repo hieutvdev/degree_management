@@ -8,5 +8,5 @@ public record CreateStudentGraduatedRequest(
     int MajorId,
     float GPA,
     int Honors,
-    string ContactEmail,
-    string PhoneNumber);
+    string? ContactEmail,
+    string? PhoneNumber);

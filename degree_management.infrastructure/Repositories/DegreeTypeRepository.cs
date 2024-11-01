@@ -5,7 +5,7 @@ using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
 
-namespace degree_management.constracts.RepositoryBase.EntityFramework;
+namespace degree_management.infrastructure.Repositories;
 
 public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, IMapper mapper) : IDegreeTypeRepository
 {
