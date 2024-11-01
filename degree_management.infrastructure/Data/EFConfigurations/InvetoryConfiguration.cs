@@ -20,7 +20,5 @@ public class InvetoryConfiguration : IEntityTypeConfiguration<Inventory>
 
         builder.Property(i => i.Description)
             .HasMaxLength(255);
-        
-
     }
 }

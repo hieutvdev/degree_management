@@ -7,9 +7,9 @@ using degree_management.constracts.CQRS;
 namespace degree_management.application.UseCases.V1.Commands.Degree.Update;
 
 public class UpdateDegreeHandler(IDegreeRepository degreeRepo, IMapper mapper)
-    : ICommandHandler<UpdateDegreeComand, ResponseBase>
+    : ICommandHandler<UpdateDegreeCommand, ResponseBase>
 {
-    public async Task<ResponseBase> Handle(UpdateDegreeComand request, CancellationToken cancellationToken)
+    public async Task<ResponseBase> Handle(UpdateDegreeCommand request, CancellationToken cancellationToken)
     {
         var degree = mapper.Map<domain.Entities.Degree>(request.Request);
         var isSuccess = await degreeRepo.UpdateDegreeAsync(degree);

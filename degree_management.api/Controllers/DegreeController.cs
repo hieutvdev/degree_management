@@ -43,7 +43,7 @@ public class DegreeController : ControllerBase
     [HttpPut("update")]
     public async Task<IActionResult> Update([FromBody] UpdateDegreeRequest req)
     {
-        var result = await _mediator.Send(new UpdateDegreeComand(req));
+        var result = await _mediator.Send(new UpdateDegreeCommand(req));
         if (result.IsSuccess)
         {
             return Ok(result);
