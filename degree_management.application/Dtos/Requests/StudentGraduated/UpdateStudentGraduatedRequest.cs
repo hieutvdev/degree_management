@@ -7,5 +7,5 @@ public record UpdateStudentGraduatedRequest(int Id, string FullName,
     int MajorId,
     float GPA,
     int Honors,
-    string ContactEmail,
-    string PhoneNumber);
+    string? ContactEmail,
+    string? PhoneNumber);

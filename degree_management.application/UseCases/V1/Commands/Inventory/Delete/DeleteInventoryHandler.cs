@@ -11,7 +11,7 @@ public class DeleteInventoryHandler(IInventoryRepository inventoryRepo, IMapper 
 {
     public async Task<ResponseBase> Handle(DeleteInventoryComand request, CancellationToken cancellationToken)
     {
-        var inventory = mapper.Map<domain.Entities.Inventory>(request);
+        var inventory = mapper.Map<domain.Entities.Inventory>(request.Request);
         bool isSuccess = await inventoryRepo.DeleteInventoryAsync(inventory.Id);
         return new ResponseBase(Data: inventory.Id, IsSuccess: isSuccess,
             Message: isSuccess ? "Inventory deleted." : "Inventory could not be deleted.");

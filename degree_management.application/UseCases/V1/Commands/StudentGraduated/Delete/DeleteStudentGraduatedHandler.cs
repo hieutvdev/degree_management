@@ -11,7 +11,7 @@ public class DeleteStudentGraduatedHandler(IStudentGraduatedRepository studentGr
 {
     public async Task<ResponseBase> Handle(DeleteStudentGraduatedComand request, CancellationToken cancellationToken)
     {
-        var studentGraduated = mapper.Map<domain.Entities.DegreeType>(request);
+        var studentGraduated = mapper.Map<domain.Entities.StudentGraduated>(request.Request);
         bool isSuccess = await studentGraduatedRepo.DeleteStudentGraduatedAsync(studentGraduated.Id);
         return new ResponseBase(Data: studentGraduated.Id, IsSuccess: isSuccess,
             Message: isSuccess ? "Student type deleted." : "Degree type could not be deleted.");
