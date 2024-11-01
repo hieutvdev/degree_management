@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace degree_management.constracts.Exceptions.Handler;
 
-public class CustomExceptionHandler
-    (ILogger<CustomExceptionHandler> logger)
+public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
     : IExceptionHandler
 {
-    public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception exception, CancellationToken cancellationToken)
+    public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception exception,
+        CancellationToken cancellationToken)
     {
         logger.LogError(
             "Error Message: {exceptionMessage}, Time of occurrence {time}",
@@ -44,7 +44,7 @@ public class CustomExceptionHandler
                 exception.GetType().Name,
                 context.Response.StatusCode = StatusCodes.Status404NotFound
             ),
-            UnAuthorizationException =>(
+            UnAuthorizationException => (
                 exception.Message,
                 exception.GetType().Name,
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized
@@ -69,16 +69,13 @@ public class CustomExceptionHandler
 
         if (exception is ValidationException validationException)
         {
-            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+            problemDetails.Extensions.Add("ValidationErrors",
+                validationException.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
         }
 
-
-        
 
         var validationResponse = new ValidationResponse(null, "Validation Failed", false, problemDetails.Extensions);
         await context.Response.WriteAsJsonAsync(validationResponse, cancellationToken);
         return true;
     }
-
- 
 }

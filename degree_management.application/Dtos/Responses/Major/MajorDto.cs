@@ -10,4 +10,5 @@ public class MajorDto : Entity<int>
     public bool Active { get; set; } = false;
     public string Description { get; set; } = String.Empty;
     public int FacultyId { get; set; }
+    public string FacultyName { get; set; }
 }

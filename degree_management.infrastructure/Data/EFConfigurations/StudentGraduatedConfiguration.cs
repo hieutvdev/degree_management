@@ -12,6 +12,7 @@ public class StudentGraduatedConfiguration : IEntityTypeConfiguration<StudentGra
         builder.Property(c => c.FullName).HasMaxLength(100).IsRequired();
         builder.Property(c => c.DateOfBirth)
             .IsRequired();
+        builder.Property(c => c.StudentCode).IsRequired().IsUnicode();
         builder.Property(c => c.Gender).IsRequired();
         builder.Property(c => c.GraduationYear).IsRequired();
         builder.Property(c => c.GPA).IsRequired();
