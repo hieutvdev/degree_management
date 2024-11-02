@@ -1,0 +1,10 @@
+degree_management.api/bin
+degree_management.api/obj
+degree_management.application/bin
+degree_management.application/obj
+degree_management.domain/bin
+degree_management.domain/obj
+degree_management.infrastructure/bin
+degree_management.infrastructure/obj
+degree_management.constracts/bin
+degree_management.constracts/obj
