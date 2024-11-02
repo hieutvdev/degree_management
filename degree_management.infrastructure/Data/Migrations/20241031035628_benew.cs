@@ -11,7 +11,7 @@ namespace degree_management.infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Description",
+                name: "Descripion",
                 table: "DegreeTypes");
 
             migrationBuilder.AlterColumn<string>(
@@ -56,7 +56,7 @@ namespace degree_management.infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Description",
+                name: "Descripion",
                 table: "DegreeTypes");
 
             migrationBuilder.AlterColumn<string>(
@@ -96,7 +96,7 @@ namespace degree_management.infrastructure.Data.Migrations
                 oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Descripion",
+                name: "Description",
                 table: "DegreeTypes",
                 type: "nvarchar(250)",
                 maxLength: 250,
