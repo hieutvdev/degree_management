@@ -4,16 +4,22 @@ using degree_management.application.Dtos.Requests.Degree;
 using degree_management.application.Dtos.Requests.DegreeType;
 using degree_management.application.Dtos.Requests.Inventory;
 using degree_management.application.Dtos.Requests.Major;
+using degree_management.application.Dtos.Requests.Period;
+using degree_management.application.Dtos.Requests.Specialization;
 using degree_management.application.Dtos.Requests.StudentGraduated;
 using degree_management.application.Dtos.Requests.Warehouse;
+using degree_management.application.Dtos.Requests.YearGraduation;
 using degree_management.application.Dtos.Responses.Auth;
 using degree_management.application.Dtos.Responses.Degree;
 using degree_management.application.Dtos.Responses.DegreeType;
 using degree_management.application.Dtos.Responses.Faculty;
 using degree_management.application.Dtos.Responses.Inventory;
 using degree_management.application.Dtos.Responses.Major;
+using degree_management.application.Dtos.Responses.Period;
+using degree_management.application.Dtos.Responses.Specialization;
 using degree_management.application.Dtos.Responses.StudentGraduated;
 using degree_management.application.Dtos.Responses.Warehouse;
+using degree_management.application.Dtos.Responses.YearGraduation;
 using degree_management.domain.Entities;
 
 namespace degree_management.application.Mappers;
@@ -50,7 +56,18 @@ public class ServiceProfile : Profile
         CreateMap<UpdateInventoryRequest, Inventory>().ReverseMap();
         CreateMap<DeleteInventoryRequest, Inventory>().ReverseMap();
         CreateMap<Inventory, InventoryDto>().ReverseMap();
-
+        CreateMap<CreateYearGraduationRequest, YearGraduation>().ReverseMap();
+        CreateMap<UpdateYearGraduationRequest, YearGraduation>().ReverseMap();
+        CreateMap<DeleteYearGraduationRequest, YearGraduation>().ReverseMap();
+        CreateMap<YearGraduation, YearGraduationDto>().ReverseMap();
+        CreateMap<CreatePeriodRequest, Period>().ReverseMap();
+        CreateMap<UpdatePeriodRequest, Period>().ReverseMap();
+        CreateMap<DeletePeriodRequest, Period>().ReverseMap();
+        CreateMap<Period, PeriodDto>().ReverseMap();
+        CreateMap<CreateSpecializationRequest, Specialization>().ReverseMap();
+        CreateMap<UpdateSpecializationRequest, Specialization>().ReverseMap();
+        CreateMap<DeleteSpecializationRequest, Specialization>().ReverseMap();
+        CreateMap<Specialization, SpecializationDto>().ReverseMap();
 
         #region Auth
 

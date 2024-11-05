@@ -5,7 +5,7 @@ using degree_management.constracts.Pagination;
 using degree_management.infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace degree_management.constracts.RepositoryBase.EntityFramework;
+namespace degree_management.infrastructure.Repositories;
 
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
 {

@@ -11,7 +11,7 @@ public class Degree : Entity<int>
     public string Code { get; set; }
     
     public string RegNo { get; set; }
-    public int CreditsRequired { get; set; }
+    public DateTime IssueDate { get; set; }
     public int Status { get; set; }
     public string? Description { get; set; } = String.Empty;
 }

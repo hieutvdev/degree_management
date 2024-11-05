@@ -19,6 +19,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<Degree> Degrees => Set<Degree>();
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     public DbSet<Inventory> Inventories => Set<Inventory>();
+    public DbSet<Specialization> Specializations => Set<Specialization>();
+    public DbSet<Period> Periods => Set<Period>();
+    public DbSet<YearGraduation> YearGraduations => Set<YearGraduation>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -7,6 +7,7 @@ namespace degree_management.application.Repositories;
 public interface IStudentGraduatedRepository
 {
     Task<bool> CreateStudentGraduatedAsync(StudentGraduated studentGraduatedModel);
+    Task<bool> CreateStudentGraduatedsAsync(IEnumerable<StudentGraduated> studentGraduatedsModel);
     Task<bool> UpdateStudentGraduatedAsync(StudentGraduated studentGraduatedModel);
     Task<bool> DeleteStudentGraduatedAsync(int degreeTypeId);
     Task<StudentGraduated> GetStudentGraduatedByIdAsync(int degreeTypeId);

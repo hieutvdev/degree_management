@@ -6,7 +6,7 @@ using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
 
-namespace degree_management.constracts.RepositoryBase.EntityFramework;
+namespace degree_management.infrastructure.Repositories;
 
 public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> repositoryBase, IMapper mapper)
     : IStudentGraduatedRepository
@@ -16,6 +16,13 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
         await repositoryBase.AddAsync(studentGraduatedModel);
         bool isSuccess = await repositoryBase.SaveChangesAsync() > 0;
         return isSuccess;
+    }
+
+    public async Task<bool> CreateStudentGraduatedsAsync(IEnumerable<StudentGraduated> studentGraduatedsModel)
+    {
+       await repositoryBase.AddRangeAsync(studentGraduatedsModel);
+       bool isSuccess = await repositoryBase.SaveChangesAsync() > 0;
+       return isSuccess;
     }
 
     public async Task<bool> UpdateStudentGraduatedAsync(StudentGraduated studentGraduatedModel)
@@ -43,7 +50,7 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
     {
         var includes = new List<Expression<Func<StudentGraduated, object>>>
         {
-            m => m.Major!
+            m => m.Specialization!
         };
         var result = await repositoryBase.GetPageWithIncludesAsync(paginationRequest,selector: s => new StudentGraduatedDto
         {
@@ -52,9 +59,10 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
             DateOfBirth = s.DateOfBirth,
             Gender = s.Gender,
             GraduationYear = s.GraduationYear,
-            MajorId = s.MajorId,
-            MajorName = s.Major!.Name,
-            GPA = s.GPA,
+            SpecializationId = s.SpecializationId,
+            SpecializationName = s.Specialization!.Name,
+            GPA10 = s.GPA10,
+            GPA4 = s.GPA4,
             Honors = s.Honors,
             ContactEmail = s.ContactEmail,
             PhoneNumber = s.PhoneNumber,
@@ -66,7 +74,7 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
     public async Task<IEnumerable<SelectDto>> GetSelectStudentGraduatedsAsync()
     {
         var result = await repositoryBase.GetSelectAsync(selector: graduated => new SelectDto {Text = graduated.FullName,Value = graduated.Id },
-            conditions: s => s.MajorId != 0);
+            conditions: s => s.SpecializationId != 0);
         return result;
     }
 }
