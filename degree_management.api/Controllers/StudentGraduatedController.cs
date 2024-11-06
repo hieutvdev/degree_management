@@ -40,6 +40,17 @@ public class StudentGraduatedController : ControllerBase
         return BadRequest(result);
     }
 
+    [HttpPost("create-list")]
+    public async Task<IActionResult> CreateList([FromBody] BulkCreateStudentGraduatedRequest req)
+    {
+        var result = await _mediator.Send(new BulkCreateStudentGraduatedCommand(req));
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+
     [HttpPut("update")]
     public async Task<IActionResult> Update([FromBody] UpdateStudentGraduatedRequest req)
     {

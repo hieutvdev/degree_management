@@ -1,6 +1,7 @@
 ﻿using degree_management.application.Dtos.Requests.Degree;
 using degree_management.application.UseCases.V1.Commands.Degree.Create;
 using degree_management.application.UseCases.V1.Commands.Degree.Delete;
+using degree_management.application.UseCases.V1.Commands.Degree.IssueIdentificationNum;
 using degree_management.application.UseCases.V1.Commands.Degree.Update;
 using degree_management.application.UseCases.V1.Queries.Degree.GetDegree;
 using degree_management.application.UseCases.V1.Queries.Degree.GetDegrees;
@@ -40,10 +41,24 @@ public class DegreeController : ControllerBase
         return BadRequest(result);
     }
 
+    [HttpPost("issue-identification-num")]
+    public async Task<IActionResult> IssueIdentificationNum([FromBody] IssueIdentificationNumRequest req)
+    {
+        var result = await _mediator.Send(new IssueIdentificationNumComand(req));
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+        {
+            
+        }
+    }
+
     [HttpPut("update")]
     public async Task<IActionResult> Update([FromBody] UpdateDegreeRequest req)
     {
-        var result = await _mediator.Send(new UpdateDegreeComand(req));
+        var result = await _mediator.Send(new UpdateDegreeCommand(req));
         if (result.IsSuccess)
         {
             return Ok(result);

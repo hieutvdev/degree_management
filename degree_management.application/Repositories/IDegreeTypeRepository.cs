@@ -10,6 +10,8 @@ public interface IDegreeTypeRepository
     Task<bool> UpdateDegreeTypeAsync(DegreeType degreeTypeModel);
     Task<bool> DeleteDegreeTypeAsync(int degreeTypeId);
     Task<DegreeType> GetDegreeTypeByIdAsync(int degreeTypeId);
+    Task<List<DegreeType>> GetDegreeTypesByStudentAsync(List<int> studentsId);
+
     Task<PaginatedResult<DegreeTypeDto>> GetListDegreeTypesAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default);
     Task<IEnumerable<SelectDto>> GetSelectDegreeTypesAsync();
 }

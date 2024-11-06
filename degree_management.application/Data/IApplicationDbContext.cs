@@ -12,6 +12,9 @@ public interface IApplicationDbContext
     DbSet<Degree> Degrees { get; }
     DbSet<Warehouse> Warehouses { get; }
     DbSet<Inventory> Inventories { get; }
+    DbSet<Specialization> Specializations { get; }
+    DbSet<YearGraduation> YearGraduations { get; }
+    DbSet<Period> Periods { get; }
     
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

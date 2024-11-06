@@ -3,10 +3,21 @@
 public record CreateStudentGraduatedRequest(
     string FullName,
     DateTime DateOfBirth,
+    string StudentCode,
+    int SpecializationId,
+    int PeriodId,
+    string? BirthPlace,
+    string? ClassName,
+    string? Cohort,
+    int? Status,
     bool Gender,
     DateTime GraduationYear,
-    int MajorId,
-    float GPA,
+    float GPA10,
+    float GPA4,
     int Honors,
     string? ContactEmail,
     string? PhoneNumber);
+
+public record BulkCreateStudentGraduatedRequest(
+    List<CreateStudentGraduatedRequest> Students
+);

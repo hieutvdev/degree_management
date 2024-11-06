@@ -7,7 +7,7 @@ using degree_management.domain.Entities;
 
 namespace degree_management.infrastructure.Repositories;
 
-public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, IMapper mapper) : IDegreeTypeRepository
+public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, IRepositoryBase<StudentGraduated> studentRepo, IMapper mapper) : IDegreeTypeRepository
 {
     public async Task<bool> CreateDegreeTypeAsync(DegreeType degreeTypeModel)
     {
@@ -34,6 +34,14 @@ public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, I
     {
         var result = await repositoryBase.GetByFieldAsync("Id", degreeTypeId);
         return result;
+    }
+
+    public async Task<List<DegreeType>> GetDegreeTypesByStudentAsync(List<int> studentsId)
+    {
+        var students = await studentRepo.FindAsync(s => studentsId.Contains(s.Id));
+        var specializationIds = students.Select(s => s.SpecializationId).ToList();
+        var degreeTypes = await repositoryBase.FindAsync(dt => specializationIds.Contains(dt.SpecializationId));
+        return degreeTypes.AsQueryable().ToList();
     }
 
     public async Task<PaginatedResult<DegreeTypeDto>> GetListDegreeTypesAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)

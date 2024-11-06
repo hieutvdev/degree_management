@@ -10,5 +10,6 @@ public class DegreeTypeDto : Entity<int>
     public bool Active { get; set; } = false;
     public float Duration { get; set; }
     public string Descripion { get; set; }
+    public string SpecializationName { get; set; }
     public int Level { get; set; }
 }
