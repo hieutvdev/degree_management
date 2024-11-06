@@ -56,6 +56,7 @@ public class ServiceProfile : Profile
         CreateMap<UpdateInventoryRequest, Inventory>().ReverseMap();
         CreateMap<DeleteInventoryRequest, Inventory>().ReverseMap();
         CreateMap<Inventory, InventoryDto>().ReverseMap();
+        CreateMap<StockInInvRequest, Inventory>().ReverseMap();
         CreateMap<CreateYearGraduationRequest, YearGraduation>().ReverseMap();
         CreateMap<UpdateYearGraduationRequest, YearGraduation>().ReverseMap();
         CreateMap<DeleteYearGraduationRequest, YearGraduation>().ReverseMap();

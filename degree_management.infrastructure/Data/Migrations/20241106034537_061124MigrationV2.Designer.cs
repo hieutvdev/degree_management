@@ -12,8 +12,8 @@ using degree_management.infrastructure.Data;
 namespace degree_management.infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241105183034_061125Migrationv2")]
-    partial class _061125Migrationv2
+    [Migration("20241106034537_061124MigrationV2")]
+    partial class _061124MigrationV2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -311,10 +311,7 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentGraduatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StundentId")
+                    b.Property<int>("StudentGraduatedId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -827,7 +824,9 @@ namespace degree_management.infrastructure.Data.Migrations
 
                     b.HasOne("degree_management.domain.Entities.StudentGraduated", "StudentGraduated")
                         .WithMany()
-                        .HasForeignKey("StudentGraduatedId");
+                        .HasForeignKey("StudentGraduatedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DegreeType");
 

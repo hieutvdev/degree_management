@@ -4,7 +4,7 @@ namespace degree_management.domain.Entities;
 
 public class Degree : Entity<int>
 {
-    public int StundentId { get; set; }
+    public int StudentGraduatedId { get; set; }
     public StudentGraduated? StudentGraduated { get; set; }
     public int DegreeTypeId { get; set; }
     public DegreeType? DegreeType { get; set; }

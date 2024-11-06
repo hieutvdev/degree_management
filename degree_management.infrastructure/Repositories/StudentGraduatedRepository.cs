@@ -20,9 +20,9 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
 
     public async Task<bool> CreateStudentGraduatedsAsync(IEnumerable<StudentGraduated> studentGraduatedsModel)
     {
-       await repositoryBase.AddRangeAsync(studentGraduatedsModel);
-       bool isSuccess = await repositoryBase.SaveChangesAsync() > 0;
-       return isSuccess;
+        await repositoryBase.AddRangeAsync(studentGraduatedsModel);
+        bool isSuccess = await repositoryBase.SaveChangesAsync() > 0;
+        return isSuccess;
     }
 
     public async Task<bool> UpdateStudentGraduatedAsync(StudentGraduated studentGraduatedModel)
@@ -39,6 +39,7 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
         return isSuccess;
     }
 
+
     public async Task<StudentGraduated> GetStudentGraduatedByIdAsync(int studentGraduatedId)
     {
         var result = await repositoryBase.GetByFieldAsync("Id", studentGraduatedId);
@@ -52,28 +53,30 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
         {
             m => m.Specialization!
         };
-        var result = await repositoryBase.GetPageWithIncludesAsync(paginationRequest,selector: s => new StudentGraduatedDto
-        {
-            Id = s.Id,
-            FullName = s.FullName,
-            DateOfBirth = s.DateOfBirth,
-            Gender = s.Gender,
-            GraduationYear = s.GraduationYear,
-            SpecializationId = s.SpecializationId,
-            SpecializationName = s.Specialization!.Name,
-            GPA10 = s.GPA10,
-            GPA4 = s.GPA4,
-            Honors = s.Honors,
-            ContactEmail = s.ContactEmail,
-            PhoneNumber = s.PhoneNumber,
-        }, cancellationToken: cancellationToken);
-       
+        var result = await repositoryBase.GetPageWithIncludesAsync(paginationRequest, selector: s =>
+            new StudentGraduatedDto
+            {
+                Id = s.Id,
+                FullName = s.FullName,
+                DateOfBirth = s.DateOfBirth,
+                Gender = s.Gender,
+                GraduationYear = s.GraduationYear,
+                SpecializationId = s.SpecializationId,
+                SpecializationName = s.Specialization!.Name,
+                GPA10 = s.GPA10,
+                GPA4 = s.GPA4,
+                Honors = s.Honors,
+                ContactEmail = s.ContactEmail,
+                PhoneNumber = s.PhoneNumber,
+            }, cancellationToken: cancellationToken);
+
         return result;
     }
 
     public async Task<IEnumerable<SelectDto>> GetSelectStudentGraduatedsAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: graduated => new SelectDto {Text = graduated.FullName,Value = graduated.Id },
+        var result = await repositoryBase.GetSelectAsync(
+            selector: graduated => new SelectDto { Text = graduated.FullName, Value = graduated.Id },
             conditions: s => s.SpecializationId != 0);
         return result;
     }

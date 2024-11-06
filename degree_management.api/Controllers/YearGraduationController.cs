@@ -4,6 +4,7 @@ using degree_management.application.UseCases.V1.Commands.YearGraduation.Create;
 using degree_management.application.UseCases.V1.Commands.YearGraduation.Delete;
 using degree_management.application.UseCases.V1.Commands.YearGraduation.Update;
 using degree_management.application.UseCases.V1.Queries.Faculty.GetSelectFaculites;
+using degree_management.application.UseCases.V1.Queries.YearGraduation.GetSelectYearGraduations;
 using degree_management.application.UseCases.V1.Queries.YearGraduation.GetYearGraduations;
 using degree_management.application.UseCases.V1.Queries.YearGraduation.GetYearGraduation;
 using degree_management.application.UseCases.V1.Queries.YearGraduation.GetYearGraduations;
@@ -73,7 +74,7 @@ public class YearGraduationController : ControllerBase
     [HttpGet("get-select")]
     public async Task<IActionResult> GetSelect()
     {
-        var result = await _mediator.Send(new GetSelectFaculitesQuery());
+        var result = await _mediator.Send(new GetSelectYearGraduationsQuery());
         return Ok(result);
     }
 }

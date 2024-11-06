@@ -45,9 +45,9 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return await FindCompiledQuery(_context, expression);
     }
 
-    public async Task<TEntity> GetAsync(Func<TEntity, bool> func, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default)
     {
-        var entity = await _dbSet!.FindAsync(func);
+        var entity = await _dbSet!.FirstOrDefaultAsync(func, cancellationToken);
         return entity!;
     }
 
@@ -168,6 +168,5 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
         return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} with {fieldName} '{value}' not found");
     }
-
 
 }

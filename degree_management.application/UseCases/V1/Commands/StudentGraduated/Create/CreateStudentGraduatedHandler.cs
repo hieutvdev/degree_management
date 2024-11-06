@@ -23,7 +23,7 @@ public class CreateStudentGraduatedsHandler(IStudentGraduatedRepository studentG
 {
     public async Task<ResponseBase> Handle(BulkCreateStudentGraduatedCommand request, CancellationToken cancellationToken)
     {
-        var studentGraduateds = mapper.Map<List<domain.Entities.StudentGraduated>>(request.Request);
+        var studentGraduateds = mapper.Map<List<domain.Entities.StudentGraduated>>(request.Request.Students);
         var isSuccess = await studentGraduatedRepo.CreateStudentGraduatedsAsync(studentGraduateds);
         return new ResponseBase(Data: null, IsSuccess: isSuccess,
             Message: isSuccess ? "Student created successfully!" : "Error creating student!");

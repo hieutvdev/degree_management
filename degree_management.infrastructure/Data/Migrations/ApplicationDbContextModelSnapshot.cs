@@ -308,10 +308,7 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentGraduatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StundentId")
+                    b.Property<int>("StudentGraduatedId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -824,7 +821,9 @@ namespace degree_management.infrastructure.Data.Migrations
 
                     b.HasOne("degree_management.domain.Entities.StudentGraduated", "StudentGraduated")
                         .WithMany()
-                        .HasForeignKey("StudentGraduatedId");
+                        .HasForeignKey("StudentGraduatedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DegreeType");
 

@@ -9,7 +9,6 @@ public class DegreeDto : Entity<int>
     public int DegreeTypeId { get; set; }
     public string Code { get; set; }
     public string RegNo { get; set; }
-    public int CreditsRequired { get; set; }
     public int Status { get; set; }
     public string? Description { get; set; } = String.Empty;
 }
