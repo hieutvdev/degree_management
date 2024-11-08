@@ -6,8 +6,6 @@ public class Degree : Entity<int>
 {
     public int StudentGraduatedId { get; set; }
     public StudentGraduated? StudentGraduated { get; set; }
-    public int DegreeTypeId { get; set; }
-    public DegreeType? DegreeType { get; set; }
     public string Code { get; set; }
     
     public string RegNo { get; set; }

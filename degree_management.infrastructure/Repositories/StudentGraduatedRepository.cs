@@ -51,21 +51,29 @@ public class StudentGraduatedRepository(IRepositoryBase<StudentGraduated> reposi
     {
         var includes = new List<Expression<Func<StudentGraduated, object>>>
         {
-            m => m.Specialization!
+            m => m.Specialization!,
+            m => m.Period!
         };
         var result = await repositoryBase.GetPageWithIncludesAsync(paginationRequest, selector: s =>
             new StudentGraduatedDto
             {
                 Id = s.Id,
+                StudentCode = s.StudentCode,
                 FullName = s.FullName,
                 DateOfBirth = s.DateOfBirth,
                 Gender = s.Gender,
                 GraduationYear = s.GraduationYear,
                 SpecializationId = s.SpecializationId,
                 SpecializationName = s.Specialization!.Name,
+                PeriodId = s.PeriodId,
+                PeriodName = s.Period!.Name,
                 GPA10 = s.GPA10,
                 GPA4 = s.GPA4,
                 Honors = s.Honors,
+                BirthPlace = s.BirthPlace,
+                ClassName = s.ClassName,
+                Cohort = s.Cohort,
+                Status = s.Status,
                 ContactEmail = s.ContactEmail,
                 PhoneNumber = s.PhoneNumber,
             }, cancellationToken: cancellationToken);
