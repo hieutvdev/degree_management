@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using degree_management.application.Dtos.Responses;
 using degree_management.application.Dtos.Responses.DegreeType;
 using degree_management.application.Repositories;
@@ -46,16 +47,32 @@ public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, I
 
     public async Task<PaginatedResult<DegreeTypeDto>> GetListDegreeTypesAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
     {
-        var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
-        var data = mapper.Map<IEnumerable<DegreeType>, IEnumerable<DegreeTypeDto>>(result.Data).ToList();
-        return new PaginatedResult<DegreeTypeDto>(data: data, pageSize: paginationRequest.PageSize,
-            pageIndex: paginationRequest.PageIndex, count: data.Count());
+        var includes = new List<Expression<Func<DegreeType, object>>>
+        {
+            m => m.Specialization!
+        };
+
+        var result = await repositoryBase.GetPageWithIncludesAsync(
+            paginationRequest,
+            selector: m => new DegreeTypeDto
+            {
+                Id = m.Id,
+                Code = m.Code,
+                Name = m.Name,
+                Duration = m.Duration,
+                Descripion = m.Description,
+                SpecializationName = m.Specialization!.Name 
+            },
+            includes: includes,
+            cancellationToken: cancellationToken
+        );
+
+        return result;
     }
 
     public async Task<IEnumerable<SelectDto>> GetSelectDegreeTypesAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: type =>  new SelectDto {Text = type.Name,Value = type.Id },
-            conditions: type => type.Active);
+        var result = await repositoryBase.GetSelectAsync(selector: type =>  new SelectDto {Text = type.Name,Value = type.Id });
         return result;
     }
 }

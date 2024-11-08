@@ -47,8 +47,7 @@ public class PeriodRepository(IRepositoryBase<Period> repositoryBase, IMapper ma
 
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: period => new SelectDto {Text = period.Name ?? "",Value = period.Id },
-            conditions: period => period.Active ?? false);
+        var result = await repositoryBase.GetSelectAsync(selector: period => new SelectDto {Text = period.Name ?? "",Value = period.Id });
         return result;
     }
 }

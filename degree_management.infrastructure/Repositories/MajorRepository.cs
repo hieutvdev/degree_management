@@ -58,7 +58,6 @@ public class MajorRepository(IRepositoryBase<Major> repositoryBase, IMapper mapp
                 Id = m.Id,
                 Code = m.Code,
                 Name = m.Name,
-                Active = m.Active,
                 Description = m.Description,
                 FacultyId = m.FacultyId,
                 FacultyName = m.Faculty!.Name 
@@ -72,8 +71,7 @@ public class MajorRepository(IRepositoryBase<Major> repositoryBase, IMapper mapp
 
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: major => new SelectDto {Text = major.Name,Value = major.Id },
-            conditions: major => major.Active);
+        var result = await repositoryBase.GetSelectAsync(selector: major => new SelectDto {Text = major.Name,Value = major.Id });
         return result;
     }
 }

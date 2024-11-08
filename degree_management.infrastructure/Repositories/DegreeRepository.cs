@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using degree_management.application.Dtos.Requests.Degree;
 using degree_management.application.Dtos.Requests.Inventory;
 using degree_management.application.Dtos.Responses;
@@ -58,31 +59,27 @@ public class DegreeRepository(
 
         foreach (var studentId in request.StudentIds)
         {
-            foreach (var degreeType in degreeTypes)
+            string code = string.Format("{0}{1:D" + request.CodeLength + "}", request.PrefixCode, currentCodeNum);
+            string regNo = string.Format("{0}{1:D" + request.RegNoLength + "}", request.PrefixRegNo,
+                currentRegNoNum);
+
+
+            var issueDetail = new Degree
             {
-                string code = string.Format("{0}{1:D" + request.CodeLength + "}", request.PrefixCode, currentCodeNum);
-                string regNo = string.Format("{0}{1:D" + request.RegNoLength + "}", request.PrefixRegNo,
-                    currentRegNoNum);
+                StudentGraduatedId = studentId,
+                Code = code,
+                RegNo = regNo,
+                IssueDate = DateTime.Now,
+                Status = 1,
+                Description = request.SuffixCode ?? string.Empty
+            };
 
 
-                var issueDetail = new Degree
-                {
-                    StudentGraduatedId = studentId,
-                    DegreeTypeId = degreeType.Id,
-                    Code = code,
-                    RegNo = regNo,
-                    IssueDate = DateTime.Now,
-                    Status = 1,
-                    Description = request.SuffixCode ?? string.Empty
-                };
+            issueIdentificationDetails.Add(issueDetail);
 
 
-                issueIdentificationDetails.Add(issueDetail);
-
-
-                currentCodeNum++;
-                currentRegNoNum++;
-            }
+            currentCodeNum++;
+            currentRegNoNum++;
         }
 
         var resultStockOut = await inventoryRepo.StockOutAsync(groupedRequests);
@@ -104,17 +101,36 @@ public class DegreeRepository(
     public async Task<PaginatedResult<DegreeDto>> GetListDegreesAsync(PaginationRequest paginationRequest,
         CancellationToken cancellationToken = default)
     {
-        var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
-        var data = mapper.Map<IEnumerable<Degree>, IEnumerable<DegreeDto>>(result.Data).ToList();
-        return new PaginatedResult<DegreeDto>(data: data, pageSize: paginationRequest.PageSize,
-            pageIndex: paginationRequest.PageIndex, count: data.Count());
+        
+        var includes = new List<Expression<Func<Degree, object>>>
+        {
+            m => m.StudentGraduated!
+        };
+
+        var result = await repositoryBase.GetPageWithIncludesAsync(
+            paginationRequest,
+            selector: m => new DegreeDto()
+            {
+                Id = m.Id,
+                StundentCode = m.StudentGraduated!.StudentCode,
+                StudentName = m.StudentGraduated.FullName,
+                Code = m.Code,
+                RegNo = m.RegNo,
+                Status = m.Status,
+                Description = m.Description,
+            },
+            includes: includes,
+            cancellationToken: cancellationToken
+        );
+
+        return result;
     }
 
     public async Task<IEnumerable<SelectDto>> GetSelectDegreesAsync()
     {
         var result = await repositoryBase.GetSelectAsync(
             selector: type => new SelectDto { Text = type.Code, Value = type.Id },
-            conditions: d => d.StudentGraduatedId != 0 && d.DegreeTypeId != 0);
+            conditions: d => d.StudentGraduatedId != 0);
         return result;
     }
 }

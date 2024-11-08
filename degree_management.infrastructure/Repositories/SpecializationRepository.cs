@@ -47,8 +47,7 @@ public class SpecializationRepository(IRepositoryBase<Specialization> repository
 
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
     {
-        var result = await repositoryBase.GetSelectAsync(selector: specialization => new SelectDto {Text = specialization.Name,Value = specialization.Id },
-            conditions: specialization => specialization.Active);
+        var result = await repositoryBase.GetSelectAsync(selector: specialization => new SelectDto {Text = specialization.Name,Value = specialization.Id });
         return result;
     }
 }

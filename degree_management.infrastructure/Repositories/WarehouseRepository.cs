@@ -48,8 +48,7 @@ public class WarehouseRepository(IRepositoryBase<Warehouse> repositoryBase, IMap
     public async Task<IEnumerable<SelectDto>> GetSelectWarehousesAsync()
     {
         var result = await repositoryBase.GetSelectAsync(
-            selector: type => new SelectDto { Text = type.Code, Value = type.Id },
-            conditions: w => w.Active);
+            selector: type => new SelectDto { Text = type.Code, Value = type.Id });
         return result;
     }
 }

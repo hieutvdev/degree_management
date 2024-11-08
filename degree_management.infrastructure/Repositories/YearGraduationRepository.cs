@@ -50,8 +50,8 @@ public class YearGraduationRepository(IRepositoryBase<YearGraduation> repository
     public async Task<IEnumerable<SelectDto>> GetSelectAsync()
     {
         var result = await repositoryBase.GetSelectAsync(
-            selector: yearGraduation => new SelectDto { Text = yearGraduation.Name ?? "", Value = yearGraduation.Id },
-            conditions: yearGraduation => (yearGraduation.Active ?? false));
+            selector: yearGraduation => new SelectDto { Text = yearGraduation.Name ?? "", Value = yearGraduation.Id }
+            );
         return result;
     }
 }

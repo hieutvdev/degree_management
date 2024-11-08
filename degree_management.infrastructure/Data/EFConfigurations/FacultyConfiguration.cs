@@ -11,8 +11,6 @@ public class FacultyConfiguration : IEntityTypeConfiguration<Faculty>
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Name).HasMaxLength(50).IsRequired().IsUnicode();
         builder.Property(c => c.Code).HasMaxLength(50).IsRequired().IsUnicode();
-        builder.Property(c => c.Active).IsRequired();
         builder.Property(c => c.Description).HasMaxLength(250);
-        
     }
 }

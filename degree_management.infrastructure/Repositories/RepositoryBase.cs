@@ -1,7 +1,9 @@
 ﻿using System.Linq.Expressions;
+using degree_management.application.Dtos.Responses;
 using degree_management.application.Repositories;
 using degree_management.constracts.Exceptions;
 using degree_management.constracts.Pagination;
+using degree_management.domain.Entities;
 using degree_management.infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -86,6 +88,11 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return await _dbSet!.Select(selector).ToListAsync(cancellationToken);
     }
 
+    public async Task<IEnumerable<SelectDto>> GetSelectAsync<TResult>(Expression<Func<TEntity, TResult>> selector)
+    {
+        return (IEnumerable<SelectDto>)await _dbSet!.Select(selector).ToListAsync();
+    }
+    
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return await _context.SaveChangesAsync(cancellationToken);
@@ -169,4 +176,5 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} with {fieldName} '{value}' not found");
     }
 
+ 
 }

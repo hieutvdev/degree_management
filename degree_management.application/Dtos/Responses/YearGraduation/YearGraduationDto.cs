@@ -6,6 +6,5 @@ public class YearGraduationDto : Entity<int>
 {
     public int Id { get; set; }
     public string? Name { get; set; }
-    public bool? Active { get; set; } = false;
     public string? Description { get; set; }
 }
