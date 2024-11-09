@@ -5,6 +5,7 @@ using degree_management.application.Dtos.Responses.Inventory;
 using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
+using degree_management.domain.Enums;
 
 namespace degree_management.infrastructure.Repositories;
 

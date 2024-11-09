@@ -22,6 +22,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<Specialization> Specializations => Set<Specialization>();
     public DbSet<Period> Periods => Set<Period>();
     public DbSet<YearGraduation> YearGraduations => Set<YearGraduation>();
+    public DbSet<StockInInvSuggest> StockInInvSuggests => Set<StockInInvSuggest>();
+    public DbSet<StockInInvSuggestDetail> StockInInvSuggestDetails => Set<StockInInvSuggestDetail>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

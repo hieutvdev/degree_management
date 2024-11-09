@@ -580,6 +580,86 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.ToTable("Specializations");
                 });
 
+            modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RequestPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("StockInInvSuggests");
+                });
+
+            modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggestDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DegreeTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockInInvSuggestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DegreeTypeId");
+
+                    b.HasIndex("StockInInvSuggestId");
+
+                    b.ToTable("StockInInvSuggestDetails");
+                });
+
             modelBuilder.Entity("degree_management.domain.Entities.StudentGraduated", b =>
                 {
                     b.Property<int>("Id")
@@ -860,6 +940,34 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Navigation("Major");
                 });
 
+            modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggest", b =>
+                {
+                    b.HasOne("degree_management.domain.Entities.Warehouse", "Warehouse")
+                        .WithMany()
+                        .HasForeignKey("WarehouseId");
+
+                    b.Navigation("Warehouse");
+                });
+
+            modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggestDetail", b =>
+                {
+                    b.HasOne("degree_management.domain.Entities.DegreeType", "DegreeType")
+                        .WithMany()
+                        .HasForeignKey("DegreeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("degree_management.domain.Entities.StockInInvSuggest", "StockInInvSuggest")
+                        .WithMany("StockInInvSuggestDetails")
+                        .HasForeignKey("StockInInvSuggestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DegreeType");
+
+                    b.Navigation("StockInInvSuggest");
+                });
+
             modelBuilder.Entity("degree_management.domain.Entities.StudentGraduated", b =>
                 {
                     b.HasOne("degree_management.domain.Entities.Period", "Period")
@@ -895,6 +1003,11 @@ namespace degree_management.infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("StudentGraduateds");
+                });
+
+            modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggest", b =>
+                {
+                    b.Navigation("StockInInvSuggestDetails");
                 });
 
             modelBuilder.Entity("degree_management.domain.Entities.YearGraduation", b =>
