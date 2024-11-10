@@ -9,7 +9,7 @@ public class GetCodeStockInSuggestHandler (IInwardRepository inwardRepo, IMapper
 {
     public async Task<ResponseBase> Handle(GetCodeStockInSuggestQuery request, CancellationToken cancellationToken)
     {
-        var result = await inwardRepo.GetStockInInvRequestAsync(request.Prefix);
+        var result = await inwardRepo.GetAddStockInInvRequestAsync(request.Prefix);
         return new ResponseBase(result);
     }
 }

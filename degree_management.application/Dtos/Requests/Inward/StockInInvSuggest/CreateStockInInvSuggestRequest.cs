@@ -1,9 +1,9 @@
 ﻿using degree_management.application.Dtos.Responses.StockInInvSuggestDetail;
 using degree_management.domain.Enums;
 
-namespace degree_management.application.Dtos.Requests.Inward;
+namespace degree_management.application.Dtos.Requests.Inward.StockInInvSuggest;
 
-public record StockInInvSuggestRequest(
+public record CreateStockInInvSuggestRequest(
     int WarehouseId,
     int RequestPersonId,
     IEnumerable<StockInInvSuggestDetailDto> StockInInvSuggestDetails,
