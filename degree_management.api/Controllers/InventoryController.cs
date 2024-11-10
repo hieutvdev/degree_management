@@ -26,17 +26,6 @@ public class InventoryController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("stock-in")]
-    public async Task<IActionResult> StockIn([FromBody] StockInInvRequest req)
-    {
-        var result = await _mediator.Send(new StockInInventoryCommand(req));
-        if (result.IsSuccess)
-        {
-            return Ok(result);
-        }
-        return BadRequest(result);
-    }
-
     [HttpGet("get-detail")]
     public async Task<IActionResult> GetDetail([FromQuery] int id)
     {

@@ -121,6 +121,7 @@ public static class ServiceCollectionConfiguration
         services.AddScoped<IYearGraduationRepository, YearGraduationRepository>();
         services.AddScoped<IPeriodRepository, PeriodRepository>();
         services.AddScoped<ISpecializationRepository, SpecializationRepository>();
+        services.AddScoped<IInwardRepository, InwardRepository>();
         return services;
     }
 
