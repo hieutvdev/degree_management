@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "degree_management.domain/1.0.0": {
+        "runtime": {
+          "degree_management.domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "degree_management.domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
