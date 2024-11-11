@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace degree_management.api.Controllers;
 
-[Route("v1/api")]
+[Route("api/users")]
 public class UserController : BaseController
 {
     private readonly UserManager<ApplicationUser> _userManager;
@@ -20,7 +20,7 @@ public class UserController : BaseController
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
     }
 
-    [HttpGet("/users")]
+    [HttpGet("get-all")]
     public async Task<IActionResult> GetList([FromQuery] SearchBaseModel searchBaseModel)
     {
         try
