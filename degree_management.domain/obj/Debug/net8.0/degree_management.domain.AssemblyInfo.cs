@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("degree_management.domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4efc3141379b3761ccb9b338f9cedb51198e39a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c7f79765b551e457da17d08116324386dedff79")]
 [assembly: System.Reflection.AssemblyProductAttribute("degree_management.domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("degree_management.domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
