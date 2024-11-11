@@ -3,6 +3,7 @@ using degree_management.application.Dtos.Responses;
 using degree_management.application.Repositories;
 using degree_management.constracts.Exceptions;
 using degree_management.constracts.Pagination;
+using degree_management.constracts.Specifications;
 using degree_management.domain.Entities;
 using degree_management.infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -105,15 +106,17 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
                throw new NotFoundException($"{typeof(TEntity).Name} not found");
     }
 
-    public async Task<PaginatedResult<TEntity>> GetPageAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
+    public async Task<PaginatedResult<TEntity>> GetPageAsync(PaginationRequest paginationRequest, 
+        CancellationToken cancellationToken = default!, Expression<Func<TEntity, bool>>? conditions = null)
     {
         int pageIndex = paginationRequest.PageIndex >= 0 ? paginationRequest.PageIndex : 0;
         var pageSize = paginationRequest.PageSize >= 1 ? paginationRequest.PageSize : 1;
         var totalCount = await _dbSet!.AsNoTracking().LongCountAsync(cancellationToken);
-        
-        IEnumerable<TEntity> entities = await _dbSet!.AsNoTracking().Skip(pageSize*pageIndex).Take(pageSize).ToListAsync(cancellationToken);
+
+        IEnumerable<TEntity> entities = await _dbSet!.AsNoTracking().WhereIf(conditions != null, conditions).Skip(pageSize*pageIndex).Take(pageSize).ToListAsync(cancellationToken);
         var pagedResult = new PaginatedResult<TEntity>(pageIndex, pageSize, totalCount, entities);
         return pagedResult;
+        
     }
     
     public async Task<PaginatedResult<TResult>> GetPageWithIncludesAsync<TResult>(

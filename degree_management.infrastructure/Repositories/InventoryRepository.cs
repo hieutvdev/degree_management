@@ -99,35 +99,41 @@ public class InventoryRepository(IRepositoryBase<Inventory> repositoryBase, IMap
         return result;
     }
 
-    public async Task<PaginatedResult<InventoryDto>> GetListInventoriesAsync(PaginationRequest paginationRequest,
-        CancellationToken cancellationToken = default)
+    public Task<PaginatedResult<InventoryDto>> GetListInventoriesAsync(PaginationRequest paginationRequest, CancellationToken cancellationToken = default)
     {
-        var includes = new List<Expression<Func<Inventory, object>>>
-        {
-            m => m.Warehouse!,
-            m => m.DegreeType!
-        };
-        var result = await repositoryBase.GetPageWithIncludesAsync(
-            paginationRequest,
-            selector: inventory => new InventoryDto
-            {
-                Id = inventory.Id,
-                DegreeTypeId = inventory.DegreeType.Id,
-                DegreeTypeName = inventory.DegreeType.Name,
-                DegreeTypeCode = inventory.DegreeType.Code,
-                WarehouseId = inventory.WarehouseId,
-                WarehouseName = inventory.Warehouse.Name,
-                WarehouseCode = inventory.Warehouse.Code,
-                Quantity = inventory.Quantity,
-                Description = inventory.Description,
-            },
-            includes: includes,
-            cancellationToken: cancellationToken
-        );
-        return result;
+        throw new NotImplementedException();
     }
 
-    public InventoryRepository(IMapper mapper) : this(null, mapper)
-    {
-    }
+    // public async Task<PaginatedResult<InventoryDto>> GetListInventoriesAsync(PaginationRequest paginationRequest,
+    //     CancellationToken cancellationToken = default)
+    // {
+    //
+    //     var results = await repositoryBase.GetPageAsync(paginationRequest,  cancellationToken);
+    //     var data = mapper.Map<IEnumerable<Inventory>, IEnumerable<InventoryDto>>(result.Data).ToList();
+    //     return new PaginatedResult<InventoryDto>(data: data, pageSize: paginationRequest.PageSize, pageIndex: paginationRequest.PageIndex, count: data.Count());
+    //     var includes = new List<Expression<Func<Inventory, object>>>
+    //     {
+    //         m => m.Warehouse!,
+    //         m => m.DegreeType!s
+    //     var result = await repositoryBase.GetPageWithIncludesAsync(
+    //         paginationRequest,
+    //         selector: inventory => new InventoryDto
+    //         {
+    //             Id = inventory.Id,
+    //             DegreeTypeId = inventory.DegreeType.Id,
+    //             DegreeTypeName = inventory.DegreeType.Name,
+    //             DegreeTypeCode = inventory.DegreeType.Code,
+    //             WarehouseId = inventory.WarehouseId,
+    //             WarehouseName = inventory.Warehouse.Name,
+    //             WarehouseCode = inventory.Warehouse.Code,
+    //             Quantity = inventory.Quantity,
+    //             Description = inventory.Description,
+    //         },
+    //         includes: includes,
+    //         cancellationToken: cancellationToken
+    //     );
+    //     return result;
+    // }
+
+ 
 }
