@@ -38,7 +38,7 @@ public class InventoryRepository(IRepositoryBase<Inventory> repositoryBase, IMap
     public async Task<PaginatedResult<InventoryDto>> GetListInventoriesAsync(PaginationRequest paginationRequest,
         CancellationToken cancellationToken = default)
     {
-        var result = await repositoryBase.GetPageAsync(paginationRequest, cancellationToken);
+        var result = await repositoryBase.GetPageAsync(paginationRequest,  cancellationToken);
         var data = mapper.Map<IEnumerable<Inventory>, IEnumerable<InventoryDto>>(result.Data).ToList();
         return new PaginatedResult<InventoryDto>(data: data, pageSize: paginationRequest.PageSize,
             pageIndex: paginationRequest.PageIndex, count: data.Count());

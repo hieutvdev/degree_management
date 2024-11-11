@@ -24,8 +24,8 @@ public interface IRepositoryBase<TEntity> where TEntity : class
 
     Task<TEntity> GetByFieldAsync(string filedName, object value, CancellationToken cancellationToken = default!);
 
-    Task<PaginatedResult<TEntity>> GetPageAsync(PaginationRequest paginationRequest,
-        CancellationToken cancellationToken = default!);
+    Task<PaginatedResult<TEntity>> GetPageAsync(PaginationRequest paginationRequest, 
+        CancellationToken cancellationToken = default!, Expression<Func<TEntity, bool>>? conditions = null);
 
     Task<PaginatedResult<TResult>> GetPageWithIncludesAsync<TResult>(
         PaginationRequest paginationRequest,
