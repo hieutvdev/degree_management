@@ -8,8 +8,10 @@
 
     <ItemGroup>
       <Folder Include="Abstractions\" />
-      <Folder Include="Entities\" />
-      <Folder Include="Enums\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\degree_management.constracts\degree_management.constracts.csproj" />
     </ItemGroup>
 
 </Project>
