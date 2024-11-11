@@ -19,6 +19,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<Degree> Degrees => Set<Degree>();
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();
     public DbSet<Inventory> Inventories => Set<Inventory>();
+    public DbSet<Specialization> Specializations => Set<Specialization>();
+    public DbSet<Period> Periods => Set<Period>();
+    public DbSet<YearGraduation> YearGraduations => Set<YearGraduation>();
+    public DbSet<StockInInvSuggest> StockInInvSuggests => Set<StockInInvSuggest>();
+    public DbSet<StockInInvSuggestDetail> StockInInvSuggestDetails => Set<StockInInvSuggestDetail>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -32,6 +37,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
             options.ToTable("Roles");
           
         });
+        
         builder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
         builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
         builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");

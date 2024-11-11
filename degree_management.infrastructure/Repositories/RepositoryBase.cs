@@ -1,12 +1,17 @@
 ﻿using System.Linq.Expressions;
+using degree_management.application.Dtos.Responses;
 using degree_management.application.Repositories;
 using degree_management.constracts.Exceptions;
 using degree_management.constracts.Pagination;
+<<<<<<< HEAD
 using degree_management.constracts.Specifications;
+=======
+using degree_management.domain.Entities;
+>>>>>>> 1be962a54631c970ae93d3fea389000e79863f91
 using degree_management.infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace degree_management.constracts.RepositoryBase.EntityFramework;
+namespace degree_management.infrastructure.Repositories;
 
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
 {
@@ -46,9 +51,9 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return await FindCompiledQuery(_context, expression);
     }
 
-    public async Task<TEntity> GetAsync(Func<TEntity, bool> func, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default)
     {
-        var entity = await _dbSet!.FindAsync(func);
+        var entity = await _dbSet!.FirstOrDefaultAsync(func, cancellationToken);
         return entity!;
     }
 
@@ -87,6 +92,11 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return await _dbSet!.Select(selector).ToListAsync(cancellationToken);
     }
 
+    public async Task<IEnumerable<SelectDto>> GetSelectAsync<TResult>(Expression<Func<TEntity, TResult>> selector)
+    {
+        return (IEnumerable<SelectDto>)await _dbSet!.Select(selector).ToListAsync();
+    }
+    
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return await _context.SaveChangesAsync(cancellationToken);
@@ -172,5 +182,5 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return entity ?? throw new NotFoundException($"{typeof(TEntity).Name} with {fieldName} '{value}' not found");
     }
 
-
+ 
 }

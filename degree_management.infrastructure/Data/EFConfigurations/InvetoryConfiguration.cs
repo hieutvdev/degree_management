@@ -12,15 +12,7 @@ public class InvetoryConfiguration : IEntityTypeConfiguration<Inventory>
         builder.Property(i => i.Quantity)
             .IsRequired();
 
-        builder.Property(i => i.IssueDate)
-            .IsRequired();
-
-        builder.Property(i => i.Status)
-            .IsRequired();
-
         builder.Property(i => i.Description)
             .HasMaxLength(255);
-        
-
     }
 }

@@ -10,7 +10,6 @@ public class DegreeConfiguration : IEntityTypeConfiguration<Degree>
     {
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Code).HasMaxLength(50).IsRequired().IsUnicode();
-        builder.Property(c => c.CreditsRequired).IsRequired().IsUnicode();
         builder.Property(c => c.Status).IsRequired();
         builder.Property(c=>c.Description).HasMaxLength(250);
     }

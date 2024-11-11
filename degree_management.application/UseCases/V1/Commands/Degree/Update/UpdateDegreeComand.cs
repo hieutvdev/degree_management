@@ -4,4 +4,4 @@ using degree_management.constracts.CQRS;
 
 namespace degree_management.application.UseCases.V1.Commands.Degree.Update;
 
-public record UpdateDegreeComand(UpdateDegreeRequest Request) : ICommand<ResponseBase>;
+public record UpdateDegreeCommand(UpdateDegreeRequest Request) : ICommand<ResponseBase>;

@@ -5,6 +5,6 @@ public record CreateDegreeRequest(
     int DegreeTypeId,
     string Code,
     string RegNo,
-    int CreditsRequired,
+    DateTime IssueDate,
     int Status,
     string? Description);

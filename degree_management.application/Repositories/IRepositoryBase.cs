@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using degree_management.application.Dtos.Responses;
 using degree_management.constracts.Pagination;
 
 namespace degree_management.application.Repositories;
@@ -10,9 +11,12 @@ public interface IRepositoryBase<TEntity> where TEntity : class
     Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression,
         CancellationToken cancellationToken = default!);
 
-    Task<TEntity> GetAsync(Func<TEntity, bool> func, CancellationToken cancellationToken = default!);
+    Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default!);
     Task AddAsync(TEntity entity, CancellationToken cancellationToken = default!);
-    Task UpdateAsync(Expression<Func<TEntity, bool>> func, Object payload, CancellationToken cancellationToken = default!);
+
+    Task UpdateAsync(Expression<Func<TEntity, bool>> func, Object payload,
+        CancellationToken cancellationToken = default!);
+
     Task DeleteAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default!);
     Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default!);
     Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default!);
@@ -39,4 +43,6 @@ public interface IRepositoryBase<TEntity> where TEntity : class
         object value,
         List<Expression<Func<TEntity, object>>>? includes = null,
         CancellationToken cancellationToken = default);
+
+    Task<IEnumerable<SelectDto>> GetSelectAsync<TResult>(Expression<Func<TEntity, TResult>> selector);
 }
