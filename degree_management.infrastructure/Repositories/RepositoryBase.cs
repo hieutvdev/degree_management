@@ -44,7 +44,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
     public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
     {
-        return await FindCompiledQuery(_context, expression);
+        return await _dbSet!.Where(expression).ToListAsync(cancellationToken);
     }
 
     public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default)

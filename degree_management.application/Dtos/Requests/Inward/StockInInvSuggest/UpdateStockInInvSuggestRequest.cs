@@ -7,6 +7,7 @@ public record UpdateStockInInvSuggestRequest(
     int Id,
     int WarehouseId,
     int RequestPersonId,
+    string Code,
     IEnumerable<StockInInvSuggestDetailDto> StockInInvSuggestDetails,
     StockInInvSuggestStatus Status,
     string? Note
