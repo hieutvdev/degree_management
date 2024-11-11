@@ -59,7 +59,6 @@ public class UserController : BaseController
             }
             else
             {
-                
                 users = users.OrderByDescending(r => r.CreatedDate).ToList();
             }
 

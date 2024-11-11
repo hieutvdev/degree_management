@@ -10,7 +10,7 @@ public class GetStudentGraduatedHandler(IStudentGraduatedRepository studentGradu
 {
     public async Task<ResponseBase> Handle(GetStudentGraduatedsQuery request, CancellationToken cancellationToken)
     {
-        var students = await studentGraduatedRepo.GetListStudentGraduatedsAsync(request.PaginationRequest, cancellationToken);
+        var students = await studentGraduatedRepo.GetListStudentGraduatedsAsync(request.SearchBase, cancellationToken);
         return new ResponseBase(students);
     }
 }

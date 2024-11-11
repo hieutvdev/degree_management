@@ -5,7 +5,9 @@ using degree_management.application.UseCases.V1.Commands.StudentGraduated.Update
 using degree_management.application.UseCases.V1.Queries.DegreeType.GetDegreeTypes;
 using degree_management.application.UseCases.V1.Queries.StudentGraduated.GetSelectStudentGraduateds;
 using degree_management.application.UseCases.V1.Queries.StudentGraduated.GetStudentGraduated;
+using degree_management.application.UseCases.V1.Queries.StudentGraduated.GetStudentGraduateds;
 using degree_management.constracts.Pagination;
+using degree_management.constracts.Specifications;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +25,7 @@ public class StudentGraduatedController : ControllerBase
     }
 
     [HttpGet("get-list")]
-    public async Task<IActionResult> GetList([FromQuery] PaginationRequest req)
+    public async Task<IActionResult> GetList([FromQuery] SearchBaseModel req)
     {
         var result = await _mediator.Send(new GetStudentGraduatedsQuery(req));
         return Ok(result);

@@ -86,6 +86,9 @@ public class InwardRepository(
     public async Task<StockInInvSuggest> GetStockInInvRequestAsync(int stockInInvId)
     {
         var stockInInv = await stockInSuggestRepo.GetByFieldAsync("Id", stockInInvId);
+        var stockInSuggestDetails =
+            await stockInSuggestDetailRepo.FindAsync(s => s.StockInInvSuggestId == stockInInvId);
+        stockInInv.StockInInvSuggestDetails = stockInSuggestDetails.Distinct().ToList();
         return stockInInv;
     }
 
