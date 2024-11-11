@@ -3,7 +3,7 @@ using degree_management.application.Dtos.Responses;
 using degree_management.application.Repositories;
 using degree_management.constracts.CQRS;
 
-namespace degree_management.application.UseCases.V1.Queries.StockInRequest.GetStockInRequests;
+namespace degree_management.application.UseCases.V1.Queries.Inward.GetStockInRequests;
 
 public class GetStockInRequestsHandler (IInwardRepository inwardRepo, IMapper mapper) : IQueryHandler<GetStockInRequestsQuery, ResponseBase>
 {

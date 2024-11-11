@@ -2,6 +2,6 @@
 using degree_management.constracts.CQRS;
 using degree_management.constracts.Pagination;
 
-namespace degree_management.application.UseCases.V1.Queries.StockInRequest.GetStockInRequests;
+namespace degree_management.application.UseCases.V1.Queries.Inward.GetStockInRequests;
 
 public record GetStockInRequestsQuery(PaginationRequest PaginationRequest) : IQuery<ResponseBase>;

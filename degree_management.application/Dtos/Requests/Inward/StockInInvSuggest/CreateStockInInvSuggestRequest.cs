@@ -6,7 +6,8 @@ namespace degree_management.application.Dtos.Requests.Inward.StockInInvSuggest;
 public record CreateStockInInvSuggestRequest(
     int WarehouseId,
     int RequestPersonId,
-    IEnumerable<StockInInvSuggestDetailDto> StockInInvSuggestDetails,
+    string Code,
+    IEnumerable<StockInInvSuggestDetailDto>? StockInInvSuggestDetails,
     StockInInvSuggestStatus Status,
     string? Note
 );
