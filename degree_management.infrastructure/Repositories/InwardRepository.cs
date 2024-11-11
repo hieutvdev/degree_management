@@ -1,6 +1,9 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper;
+using degree_management.application.Dtos.Requests.Inventory;
+using degree_management.application.Dtos.Requests.Inward.StockInInvSuggest;
 using degree_management.application.Dtos.Responses.StockInInvSuggest;
+using degree_management.application.Dtos.Responses.StockInInvSuggestDetail;
 using degree_management.application.Repositories;
 using degree_management.constracts.Pagination;
 using degree_management.domain.Entities;
@@ -8,9 +11,14 @@ using degree_management.domain.Enums;
 
 namespace degree_management.infrastructure.Repositories;
 
-public class InwardRepository(IRepositoryBase<StockInInvSuggest> stockInSuggestRepo, IMapper mapper) : IInwardRepository
+public class InwardRepository(
+    IRepositoryBase<StockInInvSuggest> stockInSuggestRepo,
+    IRepositoryBase<StockInInvSuggestDetail> stockInSuggestDetailRepo,
+    IRepositoryBase<Inventory> inventoryRepositoryBase,
+    IInventoryRepository inventoryRepo,
+    IMapper mapper) : IInwardRepository
 {
-    public async Task<StockInInvSuggest> GetAddStockInInvRequestAsync(string prefix)
+    public async Task<CreateStockInInvSuggestDto> GetAddStockInInvRequestAsync(string prefix)
     {
         if (string.IsNullOrEmpty(prefix))
         {
@@ -18,13 +26,13 @@ public class InwardRepository(IRepositoryBase<StockInInvSuggest> stockInSuggestR
         }
 
         var code = prefix + DateTime.Now.ToString("dd.MM.yy.HHmm");
-        var entity = new StockInInvSuggest
+        var entity = new CreateStockInInvSuggestDto
         {
             Id = 0,
             Code = code,
-            WarehouseId = null,
+            WarehouseId = 0,
             RequestPersonId = null,
-            StockInInvSuggestDetails = new List<StockInInvSuggestDetail>(),
+            StockInInvSuggestDetails = new List<StockInInvSuggestDetailDto>(),
             Status = StockInInvSuggestStatus.PENDING,
             Note = null,
         };
@@ -34,10 +42,39 @@ public class InwardRepository(IRepositoryBase<StockInInvSuggest> stockInSuggestR
 
     public async Task<bool> AddStockInInvRequestAsync(StockInInvSuggest stockInInv)
     {
-        await stockInSuggestRepo.AddAsync(stockInInv);
-        bool isSuccess = await stockInSuggestRepo.SaveChangesAsync() > 0;
-        return isSuccess;
+        var newStockInInv = new StockInInvSuggest
+        {
+            Code = stockInInv.Code,
+            WarehouseId = stockInInv.WarehouseId,
+            RequestPersonId = stockInInv.RequestPersonId,
+            Status = stockInInv.Status,
+            Note = stockInInv.Note,
+        };
+        await stockInSuggestRepo.AddAsync(newStockInInv);
+        bool mainSaveSuccess = await stockInSuggestRepo.SaveChangesAsync() > 0;
+
+        if (!mainSaveSuccess)
+            return false;
+        if (stockInInv.StockInInvSuggestDetails != null && stockInInv.StockInInvSuggestDetails.Any())
+        {
+            var stockInDetails = stockInInv.StockInInvSuggestDetails.Select(
+                detail => new StockInInvSuggestDetail
+                {
+                    StockInInvSuggestId = newStockInInv.Id,
+                    DegreeTypeId = detail.DegreeTypeId,
+                    Quantity = detail.Quantity
+                }).ToList().Distinct();
+
+            await stockInSuggestDetailRepo.AddRangeAsync(stockInDetails);
+            bool detailsSaveSuccess = await stockInSuggestDetailRepo.SaveChangesAsync() > 0;
+
+            if (!detailsSaveSuccess)
+                return false;
+        }
+
+        return true;
     }
+
 
     public async Task<bool> UpdateStockInInvRequestAsync(StockInInvSuggest stockInInv)
     {
@@ -51,6 +88,40 @@ public class InwardRepository(IRepositoryBase<StockInInvSuggest> stockInSuggestR
         var stockInInv = await stockInSuggestRepo.GetByFieldAsync("Id", stockInInvId);
         return stockInInv;
     }
+
+    public async Task<bool> ApproveStockInInvRequestAsync(ApproveStockInInvSuggestRequest request)
+    {
+        var stockInInvReq = await stockInSuggestRepo.GetByFieldAsync("Id", request.StockInInvId);
+        if (stockInInvReq.Status != 1)
+        {
+            return false;
+        }
+        stockInInvReq.Status = request.IsApproved ? 3 : 2;
+        await stockInSuggestRepo.UpdateAsync(s => s.Id == stockInInvReq.Id, stockInInvReq);
+        await stockInSuggestRepo.SaveChangesAsync();
+
+        var stockInSuggestDetails =
+            await stockInSuggestDetailRepo.FindAsync(s => s.StockInInvSuggestId == stockInInvReq.Id);
+
+        var stockInInvSuggestDetails = stockInSuggestDetails as StockInInvSuggestDetail[] ?? stockInSuggestDetails.ToArray();
+        if (request.IsApproved  && stockInInvSuggestDetails.Any())
+        {
+            var stockInRequests = stockInInvSuggestDetails
+                .Select(detail => new StockInInvRequest(
+                    WarehouseId: stockInInvReq.WarehouseId,
+                    DegreeTypeId: detail.DegreeTypeId,
+                    Quantity: detail.Quantity,
+                    Description: ""
+                )).ToList();
+
+            foreach (var stockInRequest in stockInRequests)
+            {
+                await inventoryRepo.StockInAsync(stockInRequest);
+            }
+        }
+        return true;
+    }
+
 
     public async Task<PaginatedResult<StockInInvSuggestDto>> GetStockInInvRequestsAsync(
         PaginationRequest paginationRequest)
@@ -70,7 +141,7 @@ public class InwardRepository(IRepositoryBase<StockInInvSuggest> stockInSuggestR
                 RequestPersonId = m.RequestPersonId,
                 WarehouseName = m.Warehouse!.Name,
                 Note = m.Note,
-                Status = m.Status,
+                Status = (StockInInvSuggestStatus)m.Status!,
             },
             includes: includes
         );

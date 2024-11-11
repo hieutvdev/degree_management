@@ -9,6 +9,7 @@ public class StockInInvSuggestDto
     public int? WarehouseId { get; set; }
     public string? WarehouseName { get; set; }
     public int? RequestPersonId { get; set; }
+    public List<domain.Entities.StockInInvSuggestDetail>? StockInInvSuggestDetails { get; set; }
     public StockInInvSuggestStatus? Status { get; set; }
     public string? Note {get; set;}
 }

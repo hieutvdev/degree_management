@@ -19,6 +19,7 @@ using degree_management.application.Dtos.Responses.Inventory;
 using degree_management.application.Dtos.Responses.Major;
 using degree_management.application.Dtos.Responses.Period;
 using degree_management.application.Dtos.Responses.Specialization;
+using degree_management.application.Dtos.Responses.StockInInvSuggestDetail;
 using degree_management.application.Dtos.Responses.StudentGraduated;
 using degree_management.application.Dtos.Responses.Warehouse;
 using degree_management.application.Dtos.Responses.YearGraduation;
@@ -130,6 +131,8 @@ public class ServiceProfile : Profile
         #region Inward
 
         CreateMap<CreateStockInInvSuggestRequest, StockInInvSuggest>().ReverseMap();
+        CreateMap<UpdateStockInInvSuggestRequest, StockInInvSuggest>().ReverseMap();
+        CreateMap<StockInInvSuggestDetailDto, StockInInvSuggestDetail>().ReverseMap();
 
         #endregion
 

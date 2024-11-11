@@ -27,6 +27,11 @@ public static class ServiceCollectionConfiguration
         services.AddFeatureManagement();
         services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        // services.AddControllers().AddNewtonsoftJson(options =>
+        // {
+        //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        // });
+
         
         return services;
     }

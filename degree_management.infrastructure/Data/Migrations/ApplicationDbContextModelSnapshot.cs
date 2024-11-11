@@ -612,7 +612,7 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<int?>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WarehouseId")
+                    b.Property<int>("WarehouseId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -944,7 +944,9 @@ namespace degree_management.infrastructure.Data.Migrations
                 {
                     b.HasOne("degree_management.domain.Entities.Warehouse", "Warehouse")
                         .WithMany()
-                        .HasForeignKey("WarehouseId");
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Warehouse");
                 });

@@ -3,11 +3,8 @@ using degree_management.application.Dtos.Responses;
 using degree_management.application.Repositories;
 using degree_management.constracts.Exceptions;
 using degree_management.constracts.Pagination;
-<<<<<<< HEAD
 using degree_management.constracts.Specifications;
-=======
 using degree_management.domain.Entities;
->>>>>>> 1be962a54631c970ae93d3fea389000e79863f91
 using degree_management.infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,7 +45,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
     public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
     {
-        return await FindCompiledQuery(_context, expression);
+        return await _dbSet!.Where(expression).ToListAsync(cancellationToken);
     }
 
     public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> func, CancellationToken cancellationToken = default)
