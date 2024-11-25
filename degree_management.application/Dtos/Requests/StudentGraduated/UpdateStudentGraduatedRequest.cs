@@ -5,7 +5,7 @@ public record UpdateStudentGraduatedRequest(
     string FullName,
     DateTime DateOfBirth,
     string StudentCode,
-    int SpecializationId,
+    int MajorId,
     int PreiodId,
     string? BirthPlace,
     string? ClassName,

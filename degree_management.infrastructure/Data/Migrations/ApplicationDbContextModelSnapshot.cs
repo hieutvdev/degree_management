@@ -351,19 +351,18 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MajorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("SpecializationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SpecializationId")
-                        .IsUnique();
+                    b.HasIndex("MajorId");
 
                     b.ToTable("DegreeTypes");
                 });
@@ -539,47 +538,6 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.ToTable("Periods");
                 });
 
-            modelBuilder.Entity("degree_management.domain.Entities.Specialization", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MajorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MajorId");
-
-                    b.ToTable("Specializations");
-                });
-
             modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggest", b =>
                 {
                     b.Property<int>("Id")
@@ -589,7 +547,10 @@ namespace degree_management.infrastructure.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -690,6 +651,9 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DegreeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -716,15 +680,15 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MajorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PeriodId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
-
-                    b.Property<int>("SpecializationId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
@@ -736,9 +700,11 @@ namespace degree_management.infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeriodId");
+                    b.HasIndex("DegreeTypeId");
 
-                    b.HasIndex("SpecializationId");
+                    b.HasIndex("MajorId");
+
+                    b.HasIndex("PeriodId");
 
                     b.ToTable("StudentGraduateds");
                 });
@@ -879,13 +845,12 @@ namespace degree_management.infrastructure.Data.Migrations
 
             modelBuilder.Entity("degree_management.domain.Entities.DegreeType", b =>
                 {
-                    b.HasOne("degree_management.domain.Entities.Specialization", "Specialization")
-                        .WithOne("DegreeType")
-                        .HasForeignKey("degree_management.domain.Entities.DegreeType", "SpecializationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("degree_management.domain.Entities.Major", "Major")
+                        .WithMany("DegreeTypes")
+                        .HasForeignKey("MajorId");
+                    
 
-                    b.Navigation("Specialization");
+                    b.Navigation("Major");
                 });
 
             modelBuilder.Entity("degree_management.domain.Entities.Inventory", b =>
@@ -929,17 +894,6 @@ namespace degree_management.infrastructure.Data.Migrations
                     b.Navigation("YearGraduation");
                 });
 
-            modelBuilder.Entity("degree_management.domain.Entities.Specialization", b =>
-                {
-                    b.HasOne("degree_management.domain.Entities.Major", "Major")
-                        .WithMany("Specializations")
-                        .HasForeignKey("MajorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Major");
-                });
-
             modelBuilder.Entity("degree_management.domain.Entities.StockInInvSuggest", b =>
                 {
                     b.HasOne("degree_management.domain.Entities.Warehouse", "Warehouse")
@@ -972,21 +926,29 @@ namespace degree_management.infrastructure.Data.Migrations
 
             modelBuilder.Entity("degree_management.domain.Entities.StudentGraduated", b =>
                 {
+                    b.HasOne("degree_management.domain.Entities.DegreeType", "DegreeType")
+                        .WithOne()
+                        .HasForeignKey("DegreeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("degree_management.domain.Entities.Major", "Major")
+                        .WithMany("StudentGraduateds")
+                        .HasForeignKey("MajorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("degree_management.domain.Entities.Period", "Period")
-                        .WithMany()
+                        .WithMany("StudentGraduateds")
                         .HasForeignKey("PeriodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("degree_management.domain.Entities.Specialization", "Specialization")
-                        .WithMany("StudentGraduateds")
-                        .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("DegreeType");
+
+                    b.Navigation("Major");
 
                     b.Navigation("Period");
-
-                    b.Navigation("Specialization");
                 });
 
             modelBuilder.Entity("degree_management.domain.Entities.Faculty", b =>
@@ -996,14 +958,13 @@ namespace degree_management.infrastructure.Data.Migrations
 
             modelBuilder.Entity("degree_management.domain.Entities.Major", b =>
                 {
-                    b.Navigation("Specializations");
+                    b.Navigation("DegreeTypes");
+
+                    b.Navigation("StudentGraduateds");
                 });
 
-            modelBuilder.Entity("degree_management.domain.Entities.Specialization", b =>
+            modelBuilder.Entity("degree_management.domain.Entities.Period", b =>
                 {
-                    b.Navigation("DegreeType")
-                        .IsRequired();
-
                     b.Navigation("StudentGraduateds");
                 });
 

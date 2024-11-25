@@ -6,5 +6,4 @@ public record CreateDegreeTypeRequest(
     bool Active,
     float Duration,
     int Level,
-    int SpecializationId,
     string? Description);

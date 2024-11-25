@@ -4,7 +4,7 @@ public record CreateStudentGraduatedRequest(
     string FullName,
     DateTime DateOfBirth,
     string StudentCode,
-    int SpecializationId,
+    int MajorId,
     int PeriodId,
     string? BirthPlace,
     string? ClassName,

@@ -9,6 +9,6 @@ public class DegreeType : Entity<int>
     public float Duration { get; set; }
     public string? Description { get; set; } = string.Empty;
     public int Level { get; set; }
-    public int SpecializationId { get; set; }
-    public Specialization? Specialization { get; set; }
+    public int? MajorId { get; set; }
+    public Major? Major { get; set; }
 }

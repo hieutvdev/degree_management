@@ -7,5 +7,4 @@ public record UpdateDegreeTypeRequest(
     bool Active,
     float Duration,
     int Level,
-    int SpecializationId,
     string? Description);

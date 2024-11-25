@@ -40,8 +40,8 @@ public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, I
     public async Task<List<DegreeType>> GetDegreeTypesByStudentAsync(List<int> studentsId)
     {
         var students = await studentRepo.FindAsync(s => studentsId.Contains(s.Id));
-        var specializationIds = students.Select(s => s.SpecializationId).ToList();
-        var degreeTypes = await repositoryBase.FindAsync(dt => specializationIds.Contains(dt.SpecializationId));
+        var degreeTypeIds = students.Select(s => s.DegreeTypeId).ToList();
+        var degreeTypes = await repositoryBase.FindAsync(dt => degreeTypeIds.Contains(dt.Id));
         return degreeTypes.AsQueryable().ToList();
     }
 
@@ -49,7 +49,7 @@ public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, I
     {
         var includes = new List<Expression<Func<DegreeType, object>>>
         {
-            m => m.Specialization!
+            m => m.Major!
         };
 
         var result = await repositoryBase.GetPageWithIncludesAsync(
@@ -61,7 +61,7 @@ public class DegreeTypeRepository (IRepositoryBase<DegreeType> repositoryBase, I
                 Name = m.Name,
                 Duration = m.Duration,
                 Descripion = m.Description,
-                SpecializationName = m.Specialization!.Name 
+                SpecializationName = m.Major!.Name 
             },
             includes: includes,
             cancellationToken: cancellationToken

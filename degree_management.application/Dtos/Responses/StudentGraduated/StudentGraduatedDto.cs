@@ -10,8 +10,6 @@ public class StudentGraduatedDto : Entity<int>
     public DateTime DateOfBirth { get; set; }
     public bool Gender { get; set; }
     public DateTime GraduationYear { get; set; }
-    public int SpecializationId { get; set; }
-    public string SpecializationName { get; set; }
     public int PeriodId { get; set; }
     public string? PeriodName { get; set; }
     public string? BirthPlace { get; set; }

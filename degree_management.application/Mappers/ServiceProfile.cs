@@ -119,15 +119,7 @@ public class ServiceProfile : Profile
 
         #endregion
 
-        #region Specialization
-
-        CreateMap<CreateSpecializationRequest, Specialization>().ReverseMap();
-        CreateMap<UpdateSpecializationRequest, Specialization>().ReverseMap();
-        CreateMap<DeleteSpecializationRequest, Specialization>().ReverseMap();
-        CreateMap<Specialization, SpecializationDto>().ReverseMap();
-
-        #endregion
-
+     
         #region Inward
 
         CreateMap<CreateStockInInvSuggestRequest, StockInInvSuggest>().ReverseMap();

@@ -75,8 +75,6 @@ public class StudentGraduatedRepository
                 DateOfBirth = s.DateOfBirth,
                 Gender = s.Gender,
                 GraduationYear = s.GraduationYear,
-                SpecializationId = s.SpecializationId,
-                SpecializationName = s.Specialization!.Name,
                 PeriodId = s.PeriodId,
                 PeriodName = s.Period!.Name,
                 GPA10 = s.GPA10,
@@ -130,7 +128,7 @@ public class StudentGraduatedRepository
     {
         var result = await _repositoryBase.GetSelectAsync(
             selector: graduated => new SelectDto { Text = graduated.FullName, Value = graduated.Id },
-            conditions: s => s.SpecializationId != 0);
+            conditions: s => s.PeriodId != 0);
         return result;
     }
 }

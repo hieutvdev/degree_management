@@ -10,4 +10,5 @@ public class Period : Entity<int>
     public string? Description { get; set; }
     public int YearGraduationId { get; set; }
     public YearGraduation? YearGraduation { get; set; }
+    public List<StudentGraduated> StudentGraduateds { get; set; } = new List<StudentGraduated>();
 }

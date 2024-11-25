@@ -9,10 +9,12 @@ public class StudentGraduated : Entity<int>
     public string StudentCode { get; set; }
     public bool Gender { get; set; }
     public DateTime GraduationYear { get; set; }
-    public int SpecializationId { get; set; }
-    public Specialization? Specialization { get; set; }
     public int PeriodId { get; set; }
     public Period? Period { get; set; }
+    public int MajorId { get; set; }
+    public Major? Major { get; set; }
+    public int DegreeTypeId { get; set; }
+    public DegreeType? DegreeType { get; set; }
     public string? BirthPlace { get; set; }
     public string? ClassName { get; set; }
     public int? Cohort { get; set; }
